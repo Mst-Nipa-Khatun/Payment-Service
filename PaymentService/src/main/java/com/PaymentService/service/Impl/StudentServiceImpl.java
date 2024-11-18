@@ -10,6 +10,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
@@ -25,6 +28,7 @@ public class StudentServiceImpl implements StudentService {
         StudentEntity studentEntity=studentRepository.findByNameAndActiveTrue(studentDto.getName());
         if(studentEntity==null){
             studentEntity=modelMapper.map(studentDto, StudentEntity.class);
+            studentEntity.setActive(true);
             StudentEntity student=studentRepository.save(studentEntity);
             StudentDto createstudentDto=modelMapper.map(student, StudentDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,createstudentDto,
@@ -32,4 +36,24 @@ public class StudentServiceImpl implements StudentService {
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Student already exists");
     }
+
+    @Override
+    public Response getAllStudent() {
+        List<StudentEntity> studentList=studentRepository.findAllByActiveTrue();
+        if(!studentList.isEmpty()){
+            List<StudentDto> studentDtos=new ArrayList<>();
+            for(StudentEntity student: studentList){
+                StudentDto studentdto=modelMapper.map(student,StudentDto.class);
+                studentDtos.add(studentdto);
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDtos,"Successfully retrieved");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Student not found");
+    }
+
+//    @Override
+//    public Response getAllStudents() {
+//        StudentEntity studentEntity=studentRepository.findAllAndActiveTrue();
+//        return null;
+//    }
 }

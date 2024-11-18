@@ -17,6 +17,9 @@ public class StudentController {
     @PostMapping(UrlConstraint.PaymentService.CREATE)
     public Response createStudent(@RequestBody StudentDto studentDto){
         return studentService.createStudent(studentDto);
-
+    }
+    @GetMapping(UrlConstraint.PaymentService.GET_ALL)
+    public Response getAllStudents(){
+        return studentService.getAllStudent();
     }
 }

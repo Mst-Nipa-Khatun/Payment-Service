@@ -5,4 +5,5 @@ import com.PaymentService.dto.StudentDto;
 
 public interface StudentService {
      Response createStudent(StudentDto studentDto);
+     Response getAllStudent();
 }

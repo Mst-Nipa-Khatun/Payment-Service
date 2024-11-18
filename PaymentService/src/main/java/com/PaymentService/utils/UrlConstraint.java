@@ -7,5 +7,7 @@ public final class UrlConstraint {
     public static class PaymentService {
         public static final String ROOT="/paymentService";
         public static final String CREATE="/create";
+        public static final String GET_ALL="/all";
+
     }
 }
