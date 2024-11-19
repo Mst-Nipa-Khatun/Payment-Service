@@ -22,4 +22,16 @@ public class StudentController {
     public Response getAllStudents(){
         return studentService.getAllStudent();
     }
+    @GetMapping(UrlConstraint.PaymentService.GET_PAYMENTS_BYID)
+    public Response getPaymentsById(@PathVariable("id") Long id){
+        return studentService.getPaymentById(id);
+    }
+    @DeleteMapping(UrlConstraint.PaymentService.DELETE_PAYMENT)
+    public Response deletePaymentById(@PathVariable("id") Long id){
+        return studentService.deleteById(id);
+    }
+    @PutMapping(UrlConstraint.PaymentService.EDIT_PAYMENT)
+    public Response editPaymentById(@PathVariable("id") Long id,@RequestBody StudentDto studentDto){
+        return studentService.editPaymentById(id,studentDto);
+    }
 }

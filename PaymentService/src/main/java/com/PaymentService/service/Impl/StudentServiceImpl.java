@@ -25,10 +25,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Response createStudent(StudentDto studentDto) {
-        StudentEntity studentEntity=studentRepository.findByNameAndActiveTrue(studentDto.getName());
+        StudentEntity studentEntity=studentRepository.findByNameAndStatus(studentDto.getName(),1);
         if(studentEntity==null){
             studentEntity=modelMapper.map(studentDto, StudentEntity.class);
-            studentEntity.setActive(true);
+            studentEntity.setStatus(1);
             StudentEntity student=studentRepository.save(studentEntity);
             StudentDto createstudentDto=modelMapper.map(student, StudentDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,createstudentDto,
@@ -39,7 +39,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Response getAllStudent() {
-        List<StudentEntity> studentList=studentRepository.findAllByActiveTrue();
+        List<StudentEntity> studentList=studentRepository.findAllByStatus(1);
         if(!studentList.isEmpty()){
             List<StudentDto> studentDtos=new ArrayList<>();
             for(StudentEntity student: studentList){
@@ -51,9 +51,41 @@ public class StudentServiceImpl implements StudentService {
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Student not found");
     }
 
-//    @Override
-//    public Response getAllStudents() {
-//        StudentEntity studentEntity=studentRepository.findAllAndActiveTrue();
-//        return null;
-//    }
+    @Override
+    public Response getPaymentById(Long id) {
+        StudentEntity studentEntity=studentRepository.findByIdAndStatus(id,1);
+        if(studentEntity!=null){
+            StudentDto studentDto=modelMapper.map(studentEntity,StudentDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDto,"Successfully retrieved");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"Student not found");
+    }
+
+    @Override
+    public Response deleteById(Long id) {
+        StudentEntity studentEntity=studentRepository.findByIdAndStatus(id,0);
+        if(studentEntity!=null){
+            studentEntity.setStatus(0);//good nmane amra dhore nibo 0 mane eita active na okay ???h,m
+            StudentEntity student=studentRepository.save(studentEntity);
+            StudentDto createstudentDto=modelMapper.map(student,StudentDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,"Successfully deleted");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"Student not found");
+    }
+
+    @Override
+    public Response editPaymentById(Long id, StudentDto studentDto) {
+        StudentEntity studentEntity=studentRepository.findByIdAndStatus(id,1);
+        if(studentEntity!=null){
+            studentEntity=modelMapper.map(studentDto, StudentEntity.class);
+            studentEntity.setStatus(1);//great mane amra onnano info update kortechi but inactive to ar korbo na ei api dara tai status active active e thakbe  ei jonno e 1 diyechi ekhane understand???hm
+            StudentEntity savedStudent=studentRepository.save(studentEntity);
+            StudentDto createstudentDto=modelMapper.map(savedStudent,StudentDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,"Successfully updated");
+
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"Student not found");
+    }
+
+
 }
