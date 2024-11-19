@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
     UsersEntity findByUserNameAndStatus(String name, Integer status);
 
-    //private final CompanyRepository company;
+    //private final CompanyRepository companyRepo;
 }
