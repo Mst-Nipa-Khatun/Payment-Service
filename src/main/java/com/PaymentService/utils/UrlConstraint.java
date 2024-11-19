@@ -22,4 +22,8 @@ public final class UrlConstraint {
         public static final String EDIT_COMPANY_BYID="/edit/{id}";
 
     }
+    public static class Users {
+        public static final String ROOT="/users";
+        public static final String CREATE="/create";
+    }
 }

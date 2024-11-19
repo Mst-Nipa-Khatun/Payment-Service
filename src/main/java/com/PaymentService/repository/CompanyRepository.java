@@ -12,4 +12,5 @@ public interface CompanyRepository extends JpaRepository<CompanyEntity,Long> {
     CompanyEntity findByCompanyNameAndStatus(String name,Integer status);
     List<CompanyEntity> findAllByStatus(Integer status);
     CompanyEntity findByIdAndStatus(Long id,Integer status);
+
 }
