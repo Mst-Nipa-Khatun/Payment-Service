@@ -8,9 +8,10 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository extends JpaRepository<StudentEntity,Long> {
-    StudentEntity findByNameAndStatus(String name,Integer Status);
+    StudentEntity findByNameAndStatus(String name,Integer status);
 
-    List<StudentEntity> findAllByStatus(Integer Status);//ki change kora lagbe ekhane sob koro rkhon
-    StudentEntity findByIdAndStatus(long id,Integer Status);
+    List<StudentEntity> findAllByStatus(Integer status);
+
+    StudentEntity findByIdAndStatus(long id,Integer status);
 
 }

@@ -65,7 +65,7 @@ public class StudentServiceImpl implements StudentService {
     public Response deleteById(Long id) {
         StudentEntity studentEntity=studentRepository.findByIdAndStatus(id,0);
         if(studentEntity!=null){
-            studentEntity.setStatus(0);//good nmane amra dhore nibo 0 mane eita active na okay ???h,m
+            studentEntity.setStatus(0);//false kore rakhchi
             StudentEntity student=studentRepository.save(studentEntity);
             StudentDto createstudentDto=modelMapper.map(student,StudentDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,"Successfully deleted");
@@ -78,7 +78,7 @@ public class StudentServiceImpl implements StudentService {
         StudentEntity studentEntity=studentRepository.findByIdAndStatus(id,1);
         if(studentEntity!=null){
             studentEntity=modelMapper.map(studentDto, StudentEntity.class);
-            studentEntity.setStatus(1);//great mane amra onnano info update kortechi but inactive to ar korbo na ei api dara tai status active active e thakbe  ei jonno e 1 diyechi ekhane understand???hm
+            studentEntity.setStatus(1);//true
             StudentEntity savedStudent=studentRepository.save(studentEntity);
             StudentDto createstudentDto=modelMapper.map(savedStudent,StudentDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,"Successfully updated");

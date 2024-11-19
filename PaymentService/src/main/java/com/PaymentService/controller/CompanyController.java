@@ -4,10 +4,7 @@ import com.PaymentService.dto.CompanyDto;
 import com.PaymentService.dto.Response;
 import com.PaymentService.service.CompanyService;
 import com.PaymentService.utils.UrlConstraint;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(UrlConstraint.Company.ROOT)
@@ -20,5 +17,21 @@ public class CompanyController {
     @PostMapping(UrlConstraint.Company.CREATE)
     public Response createCompany(@RequestBody CompanyDto companyDto) {
         return companyService.createCompany(companyDto);
+    }
+    @GetMapping(UrlConstraint.Company.GET_ALL)
+    public Response getAllCompanies(){
+        return companyService.getAllCompanies();
+    }
+    @GetMapping(UrlConstraint.Company.GET_COMPANY_BYID)
+    public Response getCompanyById(@PathVariable("id") Long id) {
+       return companyService.getCompanyById(id);
+    }
+    @DeleteMapping(UrlConstraint.Company.DELETE_COMPANY_BYID)
+    public Response deleteCompanyById(@PathVariable("id") Long id) {
+        return companyService.deleteCompanyById(id);
+    }
+    @PutMapping(UrlConstraint.Company.EDIT_COMPANY_BYID)
+    public Response editCompanyById(@PathVariable("id") Long id, @RequestBody CompanyDto companyDto) {
+        return companyService.editCompanyById(id,companyDto);
     }
 }

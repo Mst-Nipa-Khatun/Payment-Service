@@ -14,9 +14,12 @@ public final class UrlConstraint {
 
     }
     public static class Company {
-        public static final String ROOT="/company";///check your spelling...ekhane kichu dekhte passo ?ki ami root e company name diye call korbo etsi to
+        public static final String ROOT="/company";
         public static final String CREATE="/create";
         public static final String GET_ALL="/all";
+        public static final String GET_COMPANY_BYID="/get/{id}";
+        public static final String DELETE_COMPANY_BYID="/delete/{id}";
+        public static final String EDIT_COMPANY_BYID="/edit/{id}";
 
     }
 }
