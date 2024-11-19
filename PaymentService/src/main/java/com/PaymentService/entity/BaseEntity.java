@@ -1,9 +1,6 @@
 package com.PaymentService.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,10 +17,22 @@ public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
-    protected Boolean active;
+    protected Long id;  //common for all
+    protected Integer status; //common for all
+
     protected Date createdAt;
     protected Date updatedAt;
     protected String createdBy;
     protected String updatedBy;
+
+    @PrePersist       //For auto save
+    public void preSave(){
+        this.status = 1;
+        this.createdAt = new Date();
+    }
+    @PreUpdate   //For auto update
+    public void preUpdate(){
+        this.updatedAt = new Date();
+    }
+
 }
