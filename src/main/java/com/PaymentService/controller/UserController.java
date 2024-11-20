@@ -23,5 +23,17 @@ public class UserController {
     public Response getAllUsers() {
         return userService.getAllUsers();
     }
+    @GetMapping(UrlConstraint.Users.GET_USER_BY_ID)
+    public Response getUserById(@PathVariable("id") Long id) {
+        return userService.getUserById(id);
+    }
+    @DeleteMapping(UrlConstraint.Users.DELETE_USER_BY_ID)
+    public Response deleteUserById(@PathVariable("id") Long id) {
+        return userService.deleteUserById(id);
+    }
+    @PutMapping(UrlConstraint.Users.EDIT_USER_BY_ID)
+    public Response editUserById(@PathVariable("id") Long id, @RequestBody UsersDto usersDto) {
+        return userService.editUserById(id,usersDto);
+    }
 
 }
