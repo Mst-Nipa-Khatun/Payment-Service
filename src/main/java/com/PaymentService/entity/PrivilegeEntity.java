@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Entity(name = "privilege")
-public class Privilege extends BaseEntity {
+public class PrivilegeEntity extends BaseEntity {
     private String privilege;
 }

@@ -1,8 +1,8 @@
 package com.PaymentService.service.Impl;
 
 import com.PaymentService.dto.Response;
-import com.PaymentService.dto.RoleDto;
-import com.PaymentService.entity.Role;
+import com.PaymentService.dto.RoleEntityDto;
+import com.PaymentService.entity.RoleEntity;
 import com.PaymentService.entity.UsersEntity;
 import com.PaymentService.repository.RoleRepository;
 import com.PaymentService.repository.UsersRepository;
@@ -29,22 +29,22 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Response createRole(RoleDto roleDto) {
-        UsersEntity usersEntity=usersRepository.findByIdAndStatus(roleDto.getUserId(),1);
+    public Response createRole(RoleEntityDto roleEntityDto) {
+        UsersEntity usersEntity=usersRepository.findByIdAndStatus(roleEntityDto.getUserId(),1);
         if(usersEntity==null){
             return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
                     "UserId not found");
         }
-        Role role=roleRepository.findByNameAndStatus(roleDto.getName(),1);
-        if(role==null){
-            role=modelMapper.map(roleDto,Role.class);
-            role.setStatus(1);
-            Role savedRole=roleRepository.save(role);
+        RoleEntity roleEntity =roleRepository.findByNameAndStatus(roleEntityDto.getName(),1);
+        if(roleEntity ==null){
+            roleEntity =modelMapper.map(roleEntityDto, RoleEntity.class);
+            roleEntity.setStatus(1);
+            RoleEntity savedRoleEntity =roleRepository.save(roleEntity);
 
-            usersEntity.setRoleList(Collections.singletonList(savedRole));
+            usersEntity.setRoleEntityList(Collections.singletonList(savedRoleEntity));
             usersRepository.save(usersEntity);
-            RoleDto savedRoleDto=modelMapper.map(savedRole,RoleDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedRoleDto,
+            RoleEntityDto savedRoleEntityDto =modelMapper.map(savedRoleEntity, RoleEntityDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, savedRoleEntityDto,
                     "Successfully created role");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Role already exists");
@@ -52,14 +52,14 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Response getAllRoleByUserId(Long userId) {
-        List<Role> roleList=roleRepository.findAllByStatus(1);
-        if(!roleList.isEmpty()){
-            List<RoleDto> roleDtos=new ArrayList<>();
-            for(Role role:roleList){
-                RoleDto roleDto=modelMapper.map(role,RoleDto.class);
-                roleDtos.add(roleDto);
+        List<RoleEntity> roleEntityList =roleRepository.findAllByStatus(1);
+        if(!roleEntityList.isEmpty()){
+            List<RoleEntityDto> roleEntityDtos =new ArrayList<>();
+            for(RoleEntity roleEntity : roleEntityList){
+                RoleEntityDto roleEntityDto =modelMapper.map(roleEntity, RoleEntityDto.class);
+                roleEntityDtos.add(roleEntityDto);
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDtos,
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, roleEntityDtos,
                     "Successfully retrieved roles");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,

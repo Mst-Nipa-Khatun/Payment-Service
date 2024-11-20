@@ -1,6 +1,5 @@
 package com.PaymentService.dto;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 
 import java.util.List;
@@ -15,5 +14,5 @@ public class UsersDto extends BaseDto{
     private Long companyId;
 
     private List<PhoneNumbersDto> phoneNumbersList;
-    private List<RoleDto> roleList;
+    private List<RoleEntityDto> roleList;
 }

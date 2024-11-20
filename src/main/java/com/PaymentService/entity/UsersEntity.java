@@ -21,7 +21,7 @@ public class UsersEntity extends BaseEntity {
     private List<PhoneNumbers> phoneNumbersList;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Role> roleList;
+    private List<RoleEntity> roleEntityList;
 
 
     @Override
