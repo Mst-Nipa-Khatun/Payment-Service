@@ -5,4 +5,5 @@ import com.PaymentService.dto.RoleDto;
 
 public interface RoleService {
     Response createRole(RoleDto roleDto);
+    Response getAllRoleByUserId(Long userId);
 }

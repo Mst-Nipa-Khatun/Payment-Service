@@ -12,7 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -41,12 +43,26 @@ public class RoleServiceImpl implements RoleService {
 
             usersEntity.setRoleList(Collections.singletonList(savedRole));
             usersRepository.save(usersEntity);
-            //mane user er sathe jei role ta mattro create korlam seta set kore map kore dilam db te ...okay??
-
             RoleDto savedRoleDto=modelMapper.map(savedRole,RoleDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedRoleDto,
                     "Successfully created role");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Role already exists");
+    }
+
+    @Override
+    public Response getAllRoleByUserId(Long userId) {
+        List<Role> roleList=roleRepository.findAllByStatus(1);
+        if(!roleList.isEmpty()){
+            List<RoleDto> roleDtos=new ArrayList<>();
+            for(Role role:roleList){
+                RoleDto roleDto=modelMapper.map(role,RoleDto.class);
+                roleDtos.add(roleDto);
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDtos,
+                    "Successfully retrieved roles");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No roles found");
     }
 }
