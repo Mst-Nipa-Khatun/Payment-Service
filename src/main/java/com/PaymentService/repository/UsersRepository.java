@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
     UsersEntity findByUserNameAndStatus(String name, Integer status);
-    UsersEntity findByIdAndStatus(Long id, Integer status);//For RoleServiceImpl
+    UsersEntity findByIdAndStatus(Long id, Integer status);//Uses RoleServiceImpl
     List<UsersEntity> findAllByStatus(Integer status);
 }

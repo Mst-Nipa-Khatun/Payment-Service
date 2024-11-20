@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         }
         UsersEntity usersEntity = usersRepository.findByUserNameAndStatus(usersDto.getUserName(), 1);
         if (usersEntity == null) {
-                usersEntity = modelMapper.map(usersDto, UsersEntity.class);
+            usersEntity = modelMapper.map(usersDto, UsersEntity.class);
             usersEntity.setStatus(1);
             UsersEntity savedUsers = usersRepository.save(usersEntity);
             UsersDto convertUsers = modelMapper.map(savedUsers, UsersDto.class);
@@ -58,5 +58,48 @@ public class UserServiceImpl implements UserService {
 
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
+    }
+
+    @Override
+    public Response getUserById(Long id) {
+        UsersEntity usersEntity=usersRepository.findByIdAndStatus(id,1);
+        if (usersEntity != null) {
+            UsersDto convertUsers = modelMapper.map(usersEntity, UsersDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, convertUsers,
+                    "Successfully Retrieved");
+
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                "No Users Found");
+    }
+
+    @Override
+    public Response deleteUserById(Long id) {
+        UsersEntity usersEntity=usersRepository.findByIdAndStatus(id,1);
+        if (usersEntity != null) {
+            usersEntity.setStatus(0);
+            UsersEntity savedUsers = usersRepository.save(usersEntity);
+            UsersDto convertUsers = modelMapper.map(savedUsers, UsersDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,convertUsers,
+                    "Successfully Deleted");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                "No Users Found");
+    }
+
+    @Override
+    public Response editUserById(Long id, UsersDto usersDto) {
+        UsersEntity usersEntity=usersRepository.findByIdAndStatus(id,1);
+        if (usersEntity != null) {
+            usersEntity=modelMapper.map(usersDto, UsersEntity.class);
+            usersEntity.setStatus(1);
+            UsersEntity savedUsers = usersRepository.save(usersEntity);
+            UsersDto convertUsers = modelMapper.map(savedUsers, UsersDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,convertUsers,
+                    "Successfully Updated");
+
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No Users Found");
     }
 }
