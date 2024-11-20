@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
         if (usersEntity == null) {
                 usersEntity = modelMapper.map(usersDto, UsersEntity.class);
             usersEntity.setStatus(1);
-
             UsersEntity savedUsers = usersRepository.save(usersEntity);
             UsersDto convertUsers = modelMapper.map(savedUsers, UsersDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, convertUsers, "Successfully Created");

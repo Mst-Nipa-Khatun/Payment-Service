@@ -3,7 +3,6 @@ package com.PaymentService.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,6 +19,10 @@ public class UsersEntity extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PhoneNumbers> phoneNumbersList;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Role> roleList;
+
 
     @Override
     public void preSave() {
