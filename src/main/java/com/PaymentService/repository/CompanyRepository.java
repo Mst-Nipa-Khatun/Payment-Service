@@ -13,7 +13,6 @@ public interface CompanyRepository extends JpaRepository<CompanyEntity,Long> {
     List<CompanyEntity> findAllByStatus(Integer status);
     CompanyEntity findByIdAndStatus(Long id,Integer status);
 
-    //private final CompanyEntity companyEntity;
 
 
 }

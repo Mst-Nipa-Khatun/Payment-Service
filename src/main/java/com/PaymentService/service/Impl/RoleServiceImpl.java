@@ -12,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+
 @Service
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
@@ -36,6 +38,11 @@ public class RoleServiceImpl implements RoleService {
             role=modelMapper.map(roleDto,Role.class);
             role.setStatus(1);
             Role savedRole=roleRepository.save(role);
+
+            usersEntity.setRoleList(Collections.singletonList(savedRole));
+            usersRepository.save(usersEntity);
+            //mane user er sathe jei role ta mattro create korlam seta set kore map kore dilam db te ...okay??
+
             RoleDto savedRoleDto=modelMapper.map(savedRole,RoleDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedRoleDto,
                     "Successfully created role");
