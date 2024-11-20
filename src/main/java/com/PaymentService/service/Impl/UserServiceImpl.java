@@ -12,6 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     private final UsersRepository usersRepository;
@@ -41,5 +44,19 @@ public class UserServiceImpl implements UserService {
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
                 "Username already exists");
+    }
+
+    @Override
+    public Response getAllUsers() {
+        List<UsersEntity> entities = usersRepository.findAllByStatus(1);
+        if (!entities.isEmpty()) {
+            List<UsersDto> usersDtos=new ArrayList<>();
+            for (UsersEntity entity : entities) {
+                usersDtos.add(modelMapper.map(entity, UsersDto.class));
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, usersDtos, "Successfully Retrieved");
+
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
     }
 }
