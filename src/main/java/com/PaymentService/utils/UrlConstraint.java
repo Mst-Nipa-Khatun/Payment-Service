@@ -26,4 +26,9 @@ public final class UrlConstraint {
         public static final String ROOT="/users";
         public static final String CREATE="/create";
     }
-}
+    public static class Roles {
+        public static final String ROOT="/roles";
+        public static final String CREATE="/create";
+    }
+
+    }

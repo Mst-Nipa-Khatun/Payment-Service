@@ -13,5 +13,7 @@ public class UsersDto extends BaseDto{
     private String password;
     private Integer userType;
     private Long companyId;
+
     private List<PhoneNumbersDto> phoneNumbersList;
+    private List<RoleDto> roleList;
 }
