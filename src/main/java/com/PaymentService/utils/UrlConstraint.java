@@ -8,7 +8,7 @@ public final class UrlConstraint {
         public static final String ROOT="/paymentService";
         public static final String CREATE="/create";
         public static final String GET_ALL="/all";
-        public static final String GET_PAYMENTS_BYID="/get/{id}";
+        public static final String GET_PAYMENTS_BY_ID ="/get/{id}";
         public static final String DELETE_PAYMENT="/delete/{id}";
         public static final String EDIT_PAYMENT="/edit/{id}";
 
@@ -17,9 +17,9 @@ public final class UrlConstraint {
         public static final String ROOT="/company";
         public static final String CREATE="/create";
         public static final String GET_ALL="/all";
-        public static final String GET_COMPANY_BYID="/get/{id}";
-        public static final String DELETE_COMPANY_BYID="/delete/{id}";
-        public static final String EDIT_COMPANY_BYID="/edit/{id}";
+        public static final String GET_COMPANY_BY_ID ="/get/{id}";
+        public static final String DELETE_COMPANY_BY_ID ="/delete/{id}";
+        public static final String EDIT_COMPANY_BY_ID ="/edit/{id}";
 
     }
     public static class Users {

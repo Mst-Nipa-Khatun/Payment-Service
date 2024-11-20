@@ -22,7 +22,7 @@ public class StudentController {
     public Response getAllStudents(){
         return studentService.getAllStudent();
     }
-    @GetMapping(UrlConstraint.PaymentService.GET_PAYMENTS_BYID)
+    @GetMapping(UrlConstraint.PaymentService.GET_PAYMENTS_BY_ID)
     public Response getPaymentsById(@PathVariable("id") Long id){
         return studentService.getPaymentById(id);
     }
