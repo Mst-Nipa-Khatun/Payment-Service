@@ -34,6 +34,7 @@ public final class UrlConstraint {
         public static final String ROOT="/roles";
         public static final String CREATE="/create";
         public static final String GET_ALL_By_UserId="/all";
+        public static final String GET_USER_BY_ID="/get/{id}";
     }
     public static class Privilege{
         public static final String ROOT="/privilege";
