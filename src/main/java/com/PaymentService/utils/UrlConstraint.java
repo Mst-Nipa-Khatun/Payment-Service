@@ -40,6 +40,7 @@ public final class UrlConstraint {
         public static final String CREATE="/create";
         public static final String GET_ALL="/all";
         public static final String Get_Privilege_By_Id="/get/{id}";
+        public static final String DELETE_PRIVILEGE_BY_ID="/delete/{id}";
     }
 
     }
