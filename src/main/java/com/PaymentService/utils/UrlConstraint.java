@@ -42,7 +42,6 @@ public final class UrlConstraint {
         public static final String ROOT="/privilege";
         public static final String CREATE="/create";
         public static final String GET_ALL="/all";
-        public static final String Get_Privilege_By_Id="/get/{id}";
     }
 
     }
