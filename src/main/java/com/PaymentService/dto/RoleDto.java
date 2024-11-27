@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class RoleEntityDto extends BaseDto{
+public class RoleDto extends BaseDto{
     private String name;
     private Long userId;
 
