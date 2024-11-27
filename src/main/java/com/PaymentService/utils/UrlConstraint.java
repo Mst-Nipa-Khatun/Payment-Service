@@ -33,7 +33,7 @@ public final class UrlConstraint {
     public static class Roles {
         public static final String ROOT="/roles";
         public static final String CREATE="/create";
-        public static final String GET_ALL_By_RoleId="/all";
+        public static final String GET_ALL_ROLE_By_UserId="/all";
         public static final String GET_ROlE_BY_ID="/get/{id}";
         public static final String DELETE_ROLE_BY_ID="/delete/{id}";
         public static final String EDIT_ROLE_BY_ID="/edit/{id}";
@@ -42,9 +42,7 @@ public final class UrlConstraint {
         public static final String ROOT="/privilege";
         public static final String CREATE="/create";
         public static final String GET_ALL="/all";
-        public static final String GET_PRIVILEGE_BY_ID="/get/{id}";
-        public static final String DELETE_PRIVILEGE_BY_ID="/delete/{id}";
-        public static final String EDIT_PRIVILEGE_BY_ID="/edit/{id}";
+
     }
 
     }
