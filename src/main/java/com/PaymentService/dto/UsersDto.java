@@ -14,5 +14,5 @@ public class UsersDto extends BaseDto{
     private Long companyId;
 
     private List<PhoneNumbersDto> phoneNumbersList;
-    private List<RoleEntityDto> roleList;
+    private List<RoleDto> roleList;
 }
