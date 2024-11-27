@@ -1,7 +1,7 @@
 package com.PaymentService.service.Impl;
 
 import com.PaymentService.dto.Response;
-import com.PaymentService.dto.RoleEntityDto;
+import com.PaymentService.dto.RoleDto;
 import com.PaymentService.entity.RoleEntity;
 import com.PaymentService.entity.UsersEntity;
 import com.PaymentService.repository.RoleRepository;
@@ -29,22 +29,22 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Response createRole(RoleEntityDto roleEntityDto) {
-        UsersEntity usersEntity=usersRepository.findByIdAndStatus(roleEntityDto.getUserId(),1);
+    public Response createRole(RoleDto roleDto) {
+        UsersEntity usersEntity=usersRepository.findByIdAndStatus(roleDto.getUserId(),1);
         if(usersEntity==null){
             return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
                     "UserId not found");
         }
-        RoleEntity roleEntity =roleRepository.findByNameAndStatus(roleEntityDto.getName(),1);
+        RoleEntity roleEntity =roleRepository.findByNameAndStatus(roleDto.getName(),1);
         if(roleEntity ==null){
-            roleEntity =modelMapper.map(roleEntityDto, RoleEntity.class);
+            roleEntity =modelMapper.map(roleDto, RoleEntity.class);
             roleEntity.setStatus(1);
             RoleEntity savedRoleEntity =roleRepository.save(roleEntity);
 
             usersEntity.setRoleEntityList(Collections.singletonList(savedRoleEntity));
             usersRepository.save(usersEntity);
-            RoleEntityDto savedRoleEntityDto =modelMapper.map(savedRoleEntity, RoleEntityDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, savedRoleEntityDto,
+            RoleDto savedRoleDto =modelMapper.map(savedRoleEntity, RoleDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, savedRoleDto,
                     "Successfully created role");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Role already exists");
@@ -54,12 +54,12 @@ public class RoleServiceImpl implements RoleService {
     public Response getAllRoleByUserId(Long userId) {
         List<RoleEntity> roleEntityList =roleRepository.findAllByStatus(1);
         if(!roleEntityList.isEmpty()){
-            List<RoleEntityDto> roleEntityDtos =new ArrayList<>();
+            List<RoleDto> roleDtos =new ArrayList<>();
             for(RoleEntity roleEntity : roleEntityList){
-                RoleEntityDto roleEntityDto =modelMapper.map(roleEntity, RoleEntityDto.class);
-                roleEntityDtos.add(roleEntityDto);
+                RoleDto roleDto =modelMapper.map(roleEntity, RoleDto.class);
+                roleDtos.add(roleDto);
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, roleEntityDtos,
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, roleDtos,
                     "Successfully retrieved roles");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,

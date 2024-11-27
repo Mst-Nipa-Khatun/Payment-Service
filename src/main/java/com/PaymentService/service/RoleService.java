@@ -1,9 +1,9 @@
 package com.PaymentService.service;
 
 import com.PaymentService.dto.Response;
-import com.PaymentService.dto.RoleEntityDto;
+import com.PaymentService.dto.RoleDto;
 
 public interface RoleService {
-    Response createRole(RoleEntityDto roleEntityDto);
+    Response createRole(RoleDto roleDto);
     Response getAllRoleByUserId(Long userId);
 }
