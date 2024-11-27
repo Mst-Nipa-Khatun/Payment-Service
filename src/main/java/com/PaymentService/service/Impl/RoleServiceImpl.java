@@ -31,13 +31,16 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Response createRole(RoleDto roleDto) {
         UsersEntity usersEntity=usersRepository.findByIdAndStatus(roleDto.getUserId(),1);
+        //ekta role create korar jonno first e userId onujay value  ase kina check kora dorkar,tai jonno user entity userRepo db
+        //anlam thn roledto te userId ase kina ei jonno if conditions.thn na thakle to fail otherwise second function
+
         if(usersEntity==null){
             return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
                     "UserId not found");
         }
         RoleEntity roleEntity =roleRepository.findByNameAndStatus(roleDto.getName(),1);
         if(roleEntity ==null){
-            roleEntity =modelMapper.map(roleDto, RoleEntity.class);
+            roleEntity =modelMapper.map(roleDto, RoleEntity.class); //roleDto k convert kore nilam
             roleEntity.setStatus(1);
             RoleEntity savedRoleEntity =roleRepository.save(roleEntity);
 
