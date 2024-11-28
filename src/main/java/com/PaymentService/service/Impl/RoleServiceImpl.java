@@ -78,8 +78,8 @@ public class RoleServiceImpl implements RoleService {
         RoleEntity roleEntity = roleRepository.findByIdAndStatus(id,1);
         if(roleEntity!=null){
             RoleDto roleDto =modelMapper.map(roleEntity, RoleDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDto,"Successfully retrieved role");
-
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDto,
+                    "Successfully retrieved role");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No role found");
     }
