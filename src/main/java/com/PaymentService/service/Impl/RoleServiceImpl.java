@@ -92,9 +92,11 @@ public class RoleServiceImpl implements RoleService {
             roleEntity.setStatus(0);
             RoleEntity saveRole=roleRepository.save(roleEntity);
             RoleDto roleDto =modelMapper.map(saveRole, RoleDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDto,"Successfully deleted role");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDto,
+                    "Successfully deleted role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No role found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No role found");
     }
 
     @Override
