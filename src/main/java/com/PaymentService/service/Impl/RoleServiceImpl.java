@@ -81,7 +81,8 @@ public class RoleServiceImpl implements RoleService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDto,
                     "Successfully retrieved role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No role found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No role found");
     }
 
     @Override
