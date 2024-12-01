@@ -1,5 +1,6 @@
 package com.PaymentService.controller;
 
+import com.PaymentService.dto.ConcatIdDto;
 import com.PaymentService.dto.Response;
 import com.PaymentService.dto.UsersDto;
 import com.PaymentService.service.UserService;
@@ -34,6 +35,11 @@ public class UserController {
     @PutMapping(UrlConstraint.Users.EDIT_USER_BY_ID)
     public Response editUserById(@PathVariable("id") Long id, @RequestBody UsersDto usersDto) {
         return userService.editUserById(id,usersDto);
+    }
+    @PostMapping(UrlConstraint.Users.ASSIGN_ROLE_TO_USER)
+    public Response getRoleByUserId(@RequestBody ConcatIdDto concatIdDto) {
+        return userService.assignRoleToUser(concatIdDto);
+
     }
 
 }

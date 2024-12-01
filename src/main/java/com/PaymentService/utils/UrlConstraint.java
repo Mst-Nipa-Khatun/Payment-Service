@@ -29,6 +29,8 @@ public final class UrlConstraint {
         public static final String GET_USER_BY_ID ="/get/{id}";
         public static final String DELETE_USER_BY_ID ="/delete/{id}";
         public static final String EDIT_USER_BY_ID ="/edit/{id}";
+        public static final String ASSIGN_ROLE_TO_USER="/assignRoleToUser";
+
     }
     public static class Roles {
         public static final String ROOT="/roles";

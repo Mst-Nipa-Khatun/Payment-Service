@@ -10,11 +10,9 @@ import java.util.List;
 
 @Data
 @Entity(name = "role")
-public class RoleEntity extends BaseEntity{
+public class RoleEntity extends BaseEntity {
     private String name;
-    private Long userId;
 
-
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PrivilegeEntity> privilegeEntityList;
 }

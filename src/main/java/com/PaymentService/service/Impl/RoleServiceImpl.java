@@ -30,86 +30,74 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Response createRole(RoleDto roleDto) {
-        UsersEntity usersEntity=usersRepository.findByIdAndStatus(roleDto.getUserId(),1);
-
-        if(usersEntity==null){
-            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
-                    "UserId not found");
-        }
-        RoleEntity roleEntity =roleRepository.findByNameAndStatus(roleDto.getName(),1);
-        if(roleEntity ==null){
-            roleEntity =modelMapper.map(roleDto, RoleEntity.class);
+        RoleEntity roleEntity = roleRepository.findByNameAndStatus(roleDto.getName(), 1);
+        if (roleEntity == null) {
+            roleEntity = modelMapper.map(roleDto, RoleEntity.class);
             roleEntity.setStatus(1);
-            RoleEntity savedRoleEntity =roleRepository.save(roleEntity);
-
-
-            List<RoleEntity> existingRoleList = usersEntity.getRoleEntityList();
-            existingRoleList.add(savedRoleEntity);
-            usersEntity.setRoleEntityList(existingRoleList);
-
-            usersRepository.save(usersEntity);
-            RoleDto savedRoleDto =modelMapper.map(savedRoleEntity, RoleDto.class);
+            RoleEntity savedRoleEntity = roleRepository.save(roleEntity);
+            RoleDto savedRoleDto = modelMapper.map(savedRoleEntity, RoleDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, savedRoleDto,
                     "Successfully created role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
                 "Role already exists");
     }
 
     @Override
     public Response getAllRoleByUserId(Long userId) {
-        List<RoleEntity> roleEntityList =roleRepository.findAllByUserIdAndStatus(userId,1);
-        if(!roleEntityList.isEmpty()){
-            List<RoleDto> roleDtos =new ArrayList<>();
-            for(RoleEntity roleEntity : roleEntityList){
-                RoleDto roleDto =modelMapper.map(roleEntity, RoleDto.class);
+        //List<RoleEntity> roleEntityList = roleRepository.findAllByUserIdAndStatus(userId, 1);
+        List<RoleEntity> roleEntityList = roleRepository.findAll();
+        if (!roleEntityList.isEmpty()) {
+            List<RoleDto> roleDtos = new ArrayList<>();
+            for (RoleEntity roleEntity : roleEntityList) {
+                RoleDto roleDto = modelMapper.map(roleEntity, RoleDto.class);
                 roleDtos.add(roleDto);
             }
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK, roleDtos,
                     "Successfully retrieved roles");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
                 "No roles found");
     }
 
     @Override
     public Response getRoleById(Long id) {
-        RoleEntity roleEntity = roleRepository.findByIdAndStatus(id,1);
-        if(roleEntity!=null){
-            RoleDto roleDto =modelMapper.map(roleEntity, RoleDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDto,
+        RoleEntity roleEntity = roleRepository.findByIdAndStatus(id, 1);
+        if (roleEntity != null) {
+            RoleDto roleDto = modelMapper.map(roleEntity, RoleDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, roleDto,
                     "Successfully retrieved role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
                 "No role found");
     }
 
     @Override
     public Response deleteRoleById(Long id) {
-        RoleEntity roleEntity = roleRepository.findByIdAndStatus(id,1);
-        if(roleEntity!=null){
+        RoleEntity roleEntity = roleRepository.findByIdAndStatus(id, 1);
+        if (roleEntity != null) {
             roleEntity.setStatus(0);
-            RoleEntity saveRole=roleRepository.save(roleEntity);
-            RoleDto roleDto =modelMapper.map(saveRole, RoleDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,roleDto,
+            RoleEntity saveRole = roleRepository.save(roleEntity);
+            RoleDto roleDto = modelMapper.map(saveRole, RoleDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, roleDto,
                     "Successfully deleted role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
                 "No role found");
     }
 
     @Override
     public Response editRoleById(Long id, RoleDto roleDto) {
-        RoleEntity roleEntity = roleRepository.findByIdAndStatus(id,1);
-        if(roleEntity!=null){
-            RoleEntity roleEntity1 =modelMapper.map(roleDto, RoleEntity.class);
+        RoleEntity roleEntity = roleRepository.findByIdAndStatus(id, 1);
+        if (roleEntity != null) {
+            RoleEntity roleEntity1 = modelMapper.map(roleDto, RoleEntity.class);
             roleEntity.setStatus(1);
-            RoleEntity saveRoleEntity =roleRepository.save(roleEntity1);
-            RoleDto savedRoleDto =modelMapper.map(saveRoleEntity, RoleDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedRoleDto,
+            RoleEntity saveRoleEntity = roleRepository.save(roleEntity1);
+            RoleDto savedRoleDto = modelMapper.map(saveRoleEntity, RoleDto.class);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, savedRoleDto,
                     "Successfully updated role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
                 "No role found");
     }
 }
