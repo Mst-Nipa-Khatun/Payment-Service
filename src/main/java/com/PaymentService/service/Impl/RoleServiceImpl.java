@@ -107,7 +107,8 @@ public class RoleServiceImpl implements RoleService {
             roleEntity.setStatus(1);
             RoleEntity saveRoleEntity =roleRepository.save(roleEntity1);
             RoleDto savedRoleDto =modelMapper.map(saveRoleEntity, RoleDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedRoleDto,"Successfully updated role");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedRoleDto,
+                    "Successfully updated role");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No role found");
     }
