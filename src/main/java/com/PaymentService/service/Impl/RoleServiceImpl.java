@@ -110,6 +110,7 @@ public class RoleServiceImpl implements RoleService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedRoleDto,
                     "Successfully updated role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No role found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No role found");
     }
 }
