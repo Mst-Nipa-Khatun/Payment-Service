@@ -54,7 +54,8 @@ public class RoleServiceImpl implements RoleService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, savedRoleDto,
                     "Successfully created role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Role already exists");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "Role already exists");
     }
 
     @Override
