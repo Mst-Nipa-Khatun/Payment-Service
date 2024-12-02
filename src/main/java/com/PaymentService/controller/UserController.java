@@ -1,8 +1,6 @@
 package com.PaymentService.controller;
 
-import com.PaymentService.dto.ConcatIdDto;
-import com.PaymentService.dto.Response;
-import com.PaymentService.dto.UsersDto;
+import com.PaymentService.dto.*;
 import com.PaymentService.service.UserService;
 import com.PaymentService.utils.UrlConstraint;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +37,14 @@ public class UserController {
     @PostMapping(UrlConstraint.Users.ASSIGN_ROLE_TO_USER)
     public Response getRoleByUserId(@RequestBody ConcatIdDto concatIdDto) {
         return userService.assignRoleToUser(concatIdDto);
-
+    }
+    @PutMapping(UrlConstraint.Users.EDIT_EMAIL_AND_PASSWORD)
+    public Response editMailAndPassword(@RequestBody EmailAndPasswordDto emailAndPasswordDto) {
+        return userService.editMailAndPassword(emailAndPasswordDto);
+    }
+    @GetMapping(UrlConstraint.Users.GET_USER_ROLE_BY_NAME)
+    public Response getUserAndRoleByName(@RequestBody UserNameAndRoleDto userNameAndRoleDto) {
+        return userService.getUserAndRoleName(userNameAndRoleDto);
     }
 
 }
