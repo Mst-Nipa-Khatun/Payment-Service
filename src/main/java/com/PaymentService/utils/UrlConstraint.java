@@ -30,6 +30,8 @@ public final class UrlConstraint {
         public static final String DELETE_USER_BY_ID ="/delete/{id}";
         public static final String EDIT_USER_BY_ID ="/edit/{id}";
         public static final String ASSIGN_ROLE_TO_USER="/assignRoleToUser";
+        public static final String EDIT_EMAIL_AND_PASSWORD="/editEmailAndPassword";
+        public static final String GET_USER_ROLE_BY_NAME="/getUserRoleByName";
 
     }
     public static class Roles {
