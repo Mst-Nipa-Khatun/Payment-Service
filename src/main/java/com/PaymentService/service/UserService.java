@@ -10,5 +10,5 @@ public interface UserService {
     Response editUserById(Long id, UsersDto usersDto);
     Response assignRoleToUser(ConcatIdDto concatIdDto);
     Response editMailAndPassword(EmailAndPasswordDto emailAndPasswordDto);
-    Response getUserAndRoleName(UserNameAndRoleDto userNameAndRoleDto);
+    Response getVowelUsers();
 }

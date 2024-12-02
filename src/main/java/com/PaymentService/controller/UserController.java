@@ -42,9 +42,9 @@ public class UserController {
     public Response editMailAndPassword(@RequestBody EmailAndPasswordDto emailAndPasswordDto) {
         return userService.editMailAndPassword(emailAndPasswordDto);
     }
-    @GetMapping(UrlConstraint.Users.GET_USER_ROLE_BY_NAME)
-    public Response getUserAndRoleByName(@RequestBody UserNameAndRoleDto userNameAndRoleDto) {
-        return userService.getUserAndRoleName(userNameAndRoleDto);
+    @GetMapping(UrlConstraint.Users.GET_VOWEL_USERS)
+    public Response getVowelUsers() {
+        return userService.getVowelUsers();
     }
 
 }

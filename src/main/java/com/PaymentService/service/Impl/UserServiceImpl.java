@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -119,6 +120,13 @@ public class UserServiceImpl implements UserService {
         }
 
         List<RoleEntity> allRoleList = usersEntity.getRoleEntityList();
+        for (RoleEntity role : allRoleList) {
+            if (Objects.equals(role.getId(), concatIdDto.getRoleId())) {
+                return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,
+                        null,"Role already exists");
+            }
+        }
+
         allRoleList.add(roleEntity);
 
         usersEntity.setRoleEntityList(allRoleList);
@@ -128,44 +136,49 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response editMailAndPassword(EmailAndPasswordDto emailAndPasswordDto) {
-        UsersEntity entities= usersRepository.findByIdAndStatus(emailAndPasswordDto.getUserId(),1);
+        UsersEntity entities = usersRepository.findByIdAndStatus(emailAndPasswordDto.getUserId(), 1);
         if (entities != null) {
             entities.setStatus(1);
             entities.setEmail(emailAndPasswordDto.getEmail());
             entities.setPassword(emailAndPasswordDto.getPassword());
             UsersEntity savedUsers = usersRepository.save(entities);
             EmailAndPasswordDto convertemailAndPasswordDto = modelMapper.map(savedUsers, EmailAndPasswordDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,convertemailAndPasswordDto,
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, convertemailAndPasswordDto,
                     "Successfully Updated");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null, "No Users Found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
     }
 
     @Override
-    public Response getUserAndRoleName(UserNameAndRoleDto userNameAndRoleDto) {
-        List<UsersEntity> usersEntities=usersRepository.findAllByStatus(1);
+    public Response getVowelUsers() {
+        List<UsersEntity> usersEntities = usersRepository.findAllByStatus(1);
 
         if (!usersEntities.isEmpty()) {
             List<UsersDto> usersDtos = new ArrayList<>();
             for (UsersEntity entity : usersEntities) { //ekta entity holo
-
-                char ch=entity.getUserName().toLowerCase().charAt(0);//oi ekta entity r name er first lettr check
-                if(ch == 'a'|| ch == 'e'|| ch == 'i' ||ch == 'o' ||ch == 'u'  ){
+                if (Objects.isNull(entity.getUserName())) {
+                    continue;
+                }
+                char ch = entity.getUserName().toLowerCase().charAt(0);//oi ekta entity r name er first lettr check
+                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
                     entity.getRoleEntityList(); //ekta entity r list of role thakte pare ota get korlam
                     for (RoleEntity roleEntity : entity.getRoleEntityList()) { //list of role theke ekte role niye check korbo
-                        char ch2=roleEntity.getName().toLowerCase().charAt(0); //ekta role er name er first letter check
-                        if(ch2 == 'a'|| ch2 == 'e'|| ch2 == 'i' ||ch2 == 'o' ||ch2 == 'u'  )  {
-                        usersDtos.add(modelMapper.map(entity, UsersDto.class)); //list of dtos e add kore dilam
-                            //duitar compare ?
-                            //
+                        char ch2 = roleEntity.getName().toLowerCase().charAt(0); //ekta role er name er first letter check
+                        if (ch2 == 'a' || ch2 == 'e' || ch2 == 'i' || ch2 == 'o' || ch2 == 'u') {
+                            usersDtos.add(modelMapper.map(entity, UsersDto.class)); //list of dtos e add kore dilam
+                            break;
                         }
                     }
                 }
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,null,
+            if (usersDtos.isEmpty()) {
+                return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                        "No Users Found");
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, usersDtos,
                     "Successfully retrieved User and role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No Users Found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
 
     }
 
