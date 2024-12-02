@@ -1,8 +1,6 @@
 package com.PaymentService.service;
 
-import com.PaymentService.dto.ConcatIdDto;
-import com.PaymentService.dto.Response;
-import com.PaymentService.dto.UsersDto;
+import com.PaymentService.dto.*;
 
 public interface UserService {
     Response createUsers(UsersDto usersDto);
@@ -11,4 +9,6 @@ public interface UserService {
     Response deleteUserById(Long id);
     Response editUserById(Long id, UsersDto usersDto);
     Response assignRoleToUser(ConcatIdDto concatIdDto);
+    Response editMailAndPassword(EmailAndPasswordDto emailAndPasswordDto);
+    Response getUserAndRoleName(UserNameAndRoleDto userNameAndRoleDto);
 }
