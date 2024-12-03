@@ -35,7 +35,7 @@ public class UserController {
         return userService.editUserById(id,usersDto);
     }
     @PostMapping(UrlConstraint.Users.ASSIGN_ROLE_TO_USER)
-    public Response getRoleByUserId(@RequestBody ConcatIdDto concatIdDto) {
+    public Response assignRoleToUsers(@RequestBody ConcatIdDto concatIdDto) {
         return userService.assignRoleToUser(concatIdDto);
     }
     @PutMapping(UrlConstraint.Users.EDIT_EMAIL_AND_PASSWORD)
