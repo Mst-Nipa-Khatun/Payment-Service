@@ -1,15 +1,13 @@
 package com.PaymentService.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-@Entity(name = "role")
+@Table(name = "role")
+@Entity
 public class RoleEntity extends BaseEntity {
     private String name;
 

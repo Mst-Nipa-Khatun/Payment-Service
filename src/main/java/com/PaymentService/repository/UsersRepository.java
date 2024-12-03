@@ -2,6 +2,7 @@ package com.PaymentService.repository;
 
 import com.PaymentService.entity.UsersEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,8 +17,9 @@ public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
     UsersEntity findByIdAndEmailAndPassword(Long id, String email, String password);
   //  UsersEntity findByUserNameAndVowels(String name, String vowels);
 
+    @Query("select u from UsersEntity u where substring(lower(u.userName),1,1) in ('a','e','i','o','u')")
     List<UsersEntity> findByUserNameStartingWithVowel();
-    List<UsersEntity> findByUserNameStartingWithVowel(String word);
+
 
 
     // List<RoleEntity> findByRoleNameStartingWithVowel(); //role Repo te add korte hobe
