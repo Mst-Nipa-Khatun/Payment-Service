@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
                 }
                 char ch = entity.getUserName().toLowerCase().charAt(0);//oi ekta entity r name er first lettr check
                 if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-                    entity.getRoleEntityList(); //ekta entity r list of role thakte pare ota get korlam
+                    //entity.getRoleEntityList(); //ekta entity r list of role thakte pare ota get korlam
                     for (RoleEntity roleEntity : entity.getRoleEntityList()) { //list of role theke ekte role niye check korbo
                         char ch2 = roleEntity.getName().toLowerCase().charAt(0); //ekta role er name er first letter check
                         if (ch2 == 'a' || ch2 == 'e' || ch2 == 'i' || ch2 == 'o' || ch2 == 'u') {
