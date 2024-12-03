@@ -14,8 +14,15 @@ public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
      //UsersEntity findById(long id);
     UsersEntity findByEmailAndPassword(String email, String password);
     UsersEntity findByIdAndEmailAndPassword(Long id, String email, String password);
-
   //  UsersEntity findByUserNameAndVowels(String name, String vowels);
+
+    List<UsersEntity> findByUserNameStartingWithVowel();
+    List<UsersEntity> findByUserNameStartingWithVowel(String word);
+
+
+    // List<RoleEntity> findByRoleNameStartingWithVowel(); //role Repo te add korte hobe
+   // List<String> findByNamesStartingWithVowelFromUsersAndRoles();
+
 
 
 }
