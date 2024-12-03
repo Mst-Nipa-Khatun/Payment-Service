@@ -126,7 +126,6 @@ public class UserServiceImpl implements UserService {
                         null,"Role already exists");
             }
         }
-
         allRoleList.add(roleEntity);
 
         usersEntity.setRoleEntityList(allRoleList);
