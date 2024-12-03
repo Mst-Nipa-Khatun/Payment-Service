@@ -150,30 +150,60 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response getVowelUsers() {
-        List<UsersEntity> usersEntities = usersRepository.findAllByStatus(1);
+       // List<UsersEntity> Users = usersRepository.findByUserNameStartingWithVowel("aeiou");//"a","e","i","o","u"
 
-        if (!usersEntities.isEmpty()) {
-            List<UsersDto> usersDtos = new ArrayList<>();
-            for (UsersEntity entity : usersEntities) {
-                if (Objects.isNull(entity.getUserName())) {
+        List<UsersEntity> vowelUsers = usersRepository.findByUserNameStartingWithVowel();
+        if(vowelUsers==null){
+            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No Users Found");
+        }
+
+
+        List<RoleEntity> vowelRoles=roleRepository.findByRoleNameStartingWithVowel();
+        if(vowelRoles==null){
+            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No Roles Found");
+        }
+
+        if(!vowelUsers.isEmpty()){
+            List<UsersDto> usersDtos=new ArrayList<>();
+            for (UsersEntity usersEntity : vowelUsers) {
+                if (Objects.isNull(usersEntity.getUserName())) {
                     continue;
                 }
-                char ch = entity.getUserName().toLowerCase().charAt(0);
-                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-                    //entity.getRoleEntityList();
-                    for (RoleEntity roleEntity : entity.getRoleEntityList()) {
-                        char ch2 = roleEntity.getName().toLowerCase().charAt(0);
-                        if (ch2 == 'a' || ch2 == 'e' || ch2 == 'i' || ch2 == 'o' || ch2 == 'u') {
-                            usersDtos.add(modelMapper.map(entity, UsersDto.class));
-                            break;
-                        }
-                    }
+                for (RoleEntity roleEntity :usersEntity.getRoleEntityList()) {
+                    usersDtos.add(modelMapper.map(usersEntity, UsersDto.class));
+                    break;
                 }
             }
             if (usersDtos.isEmpty()) {
                 return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
                         "No Users Found");
             }
+
+
+//
+//        List<UsersEntity> usersEntities = usersRepository.findAllByStatus(1);
+//        if (!usersEntities.isEmpty()) {
+//            List<UsersDto> usersDtos1 = new ArrayList<>();
+//            for (UsersEntity entity : usersEntities) {
+//                if (Objects.isNull(entity.getUserName())) {
+//                    continue;
+//                }
+//                char ch = entity.getUserName().toLowerCase().charAt(0);
+//                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+//                    //entity.getRoleEntityList();
+//                    for (RoleEntity roleEntity : entity.getRoleEntityList()) {
+//                        char ch2 = roleEntity.getName().toLowerCase().charAt(0);
+//                        if (ch2 == 'a' || ch2 == 'e' || ch2 == 'i' || ch2 == 'o' || ch2 == 'u') {
+//                            usersDtos.add(modelMapper.map(entity, UsersDto.class));
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//            if (usersDtos.isEmpty()) {
+//                return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+//                        "No Users Found");
+//            }
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK, usersDtos,
                     "Successfully retrieved User and role");
         }
