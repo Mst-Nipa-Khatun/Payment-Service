@@ -155,17 +155,17 @@ public class UserServiceImpl implements UserService {
 
         if (!usersEntities.isEmpty()) {
             List<UsersDto> usersDtos = new ArrayList<>();
-            for (UsersEntity entity : usersEntities) { //ekta entity holo
+            for (UsersEntity entity : usersEntities) {
                 if (Objects.isNull(entity.getUserName())) {
                     continue;
                 }
-                char ch = entity.getUserName().toLowerCase().charAt(0);//oi ekta entity r name er first lettr check
+                char ch = entity.getUserName().toLowerCase().charAt(0);
                 if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-                    //entity.getRoleEntityList(); //ekta entity r list of role thakte pare ota get korlam
-                    for (RoleEntity roleEntity : entity.getRoleEntityList()) { //list of role theke ekte role niye check korbo
-                        char ch2 = roleEntity.getName().toLowerCase().charAt(0); //ekta role er name er first letter check
+                    //entity.getRoleEntityList();
+                    for (RoleEntity roleEntity : entity.getRoleEntityList()) {
+                        char ch2 = roleEntity.getName().toLowerCase().charAt(0);
                         if (ch2 == 'a' || ch2 == 'e' || ch2 == 'i' || ch2 == 'o' || ch2 == 'u') {
-                            usersDtos.add(modelMapper.map(entity, UsersDto.class)); //list of dtos e add kore dilam
+                            usersDtos.add(modelMapper.map(entity, UsersDto.class));
                             break;
                         }
                     }
