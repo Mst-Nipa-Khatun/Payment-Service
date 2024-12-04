@@ -51,4 +51,20 @@ public class TransactionServiceImpl implements TransactionService {
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transactions found");
     }
+
+    @Override
+    public Response getTransactionAmount() {
+       // List<TransactionEntity> transactions=transactionRepository.findAllByStatus(1);
+        List<TransactionEntity> transactions=transactionRepository.findByAmountLessThanEqualAndStatus(1000.0,1);
+        if(!transactions.isEmpty()){
+            List<TransactionDto> transactionDtos=new ArrayList<>();
+            for(TransactionEntity transaction:transactions){
+                transactionDtos.add(modelMapper.map(transaction,TransactionDto.class));
+
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,transactionDtos,"Successfully retrieved transactions");
+        }
+
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transactions found");
+    }
 }
