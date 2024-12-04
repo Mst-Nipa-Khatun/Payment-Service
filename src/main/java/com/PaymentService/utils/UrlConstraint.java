@@ -48,5 +48,12 @@ public final class UrlConstraint {
         public static final String GET_ALL="/all";
 
     }
+    public static class Transaction{
+        public static final String ROOT="/transaction";
+        public static final String CREATE="/create";
+        public static final String GET_ALL="/all";
+        public static final String GET_SPECIFIC_AMOUNT="/get/{amount}";
+
+    }
 
     }
