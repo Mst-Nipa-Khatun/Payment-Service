@@ -153,15 +153,9 @@ public class UserServiceImpl implements UserService {
        // List<UsersEntity> Users = usersRepository.findByUserNameStartingWithVowel("aeiou");//"a","e","i","o","u"
 
         List<UsersEntity> vowelUsers = usersRepository.findAll();
-        if(vowelUsers==null){
-            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No Users Found");
-        }
 
 
         List<RoleEntity> vowelRoles=roleRepository.findAll();
-        if(vowelRoles==null){
-            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No Roles Found");
-        }
 
         if(!vowelUsers.isEmpty()){
             List<UsersDto> usersDtos=new ArrayList<>();
@@ -170,6 +164,8 @@ public class UserServiceImpl implements UserService {
                     continue;
                 }
                 for (RoleEntity roleEntity :usersEntity.getRoleEntityList()) {
+
+
                     usersDtos.add(modelMapper.map(usersEntity, UsersDto.class));
                     break;
                 }
