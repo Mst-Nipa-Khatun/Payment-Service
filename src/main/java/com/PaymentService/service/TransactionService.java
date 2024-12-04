@@ -7,4 +7,6 @@ public interface TransactionService {
     Response createTransaction(TransactionDto transactionDto);
     Response getAllTransactions();
     Response getTransactionAmount();
+    Response getTransactionAmountBetween();
+    Response getTransactionAmountBetweenTwoRange(Double amount,TransactionDto transactionDto);
 }

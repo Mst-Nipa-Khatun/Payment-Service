@@ -23,9 +23,20 @@ public class TransactionController {
     public Response getAllTransactions() {
         return transactionService.getAllTransactions();
     }
-@GetMapping(UrlConstraint.Transaction.GET_TRANSACTION_AMOUNT)
+    @GetMapping(UrlConstraint.Transaction.GET_TRANSACTION_AMOUNT)
     public Response getTransactionAmount() {
         return transactionService.getTransactionAmount();
 }
+
+  @GetMapping(UrlConstraint.Transaction.GET_AMOUNT_BETWEEN)
+  public Response getTransactionAmountBetween() {
+        return transactionService.getTransactionAmountBetween();
+  }
+
+   @GetMapping(UrlConstraint.Transaction.GET_AMOUNT_BETWEEN_TWO_RANGE)
+    public Response getTransactionAmountBetweenTwoRange(@PathVariable("amount") Double amount, @RequestBody TransactionDto transactionDto) {
+        return transactionService.getTransactionAmountBetweenTwoRange(amount,transactionDto);
+}
+
 
 }

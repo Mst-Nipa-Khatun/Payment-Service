@@ -12,4 +12,5 @@ public interface TransactionRepository extends JpaRepository<TransactionEntity, 
     TransactionEntity findByTransactionIdAndStatus(Long transactionId, Integer status);
    //List<TransactionEntity> findAllByStatus(Integer status);
   List<TransactionEntity> findByAmountLessThanEqualAndStatus(Double amount, Integer status);
+  List<TransactionEntity> findAllByStatus(Integer status);
 }

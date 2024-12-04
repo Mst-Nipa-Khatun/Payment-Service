@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -66,5 +67,35 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transactions found");
+    }
+
+    @Override
+    public Response getTransactionAmountBetween() {
+        List<TransactionEntity> transactionEntities=transactionRepository.findAllByStatus(1);
+        if(!transactionEntities.isEmpty()){
+            List<TransactionDto> transactionDtos=new ArrayList<>();
+            for(TransactionEntity transaction:transactionEntities){
+                if (Objects.isNull(transaction.getAmount())) {
+                    continue;
+                }
+                Double amount=transaction.getAmount();
+                if(amount>=500 && amount<=1000 ){
+                    transactionDtos.add(modelMapper.map(transaction,TransactionDto.class));
+                   // break;
+                }
+            }
+            if (transactionDtos.isEmpty()) {
+                return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                        "No Users Found");
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,transactionDtos,"Successfully retrieved transactions");
+
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transactions found");
+    }
+
+    @Override
+    public Response getTransactionAmountBetweenTwoRange(Double amount, TransactionDto transactionDto) {
+        return null;
     }
 }
