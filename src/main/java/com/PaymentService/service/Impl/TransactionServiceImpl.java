@@ -10,6 +10,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -33,5 +36,19 @@ public class TransactionServiceImpl implements TransactionService {
 
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Transaction already exists");
+    }
+
+    @Override
+    public Response getAllTransactions() {
+        List<TransactionEntity> transactions=transactionRepository.findAll();
+        if(!transactions.isEmpty()){
+            List<TransactionDto> transactionDtos=new ArrayList<>();
+            for(TransactionEntity transaction:transactions){
+                transactionDtos.add(modelMapper.map(transaction,TransactionDto.class));
+
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,transactionDtos,"Successfully retrieved transactions");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transactions found");
     }
 }
