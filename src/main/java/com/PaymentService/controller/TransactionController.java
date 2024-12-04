@@ -23,4 +23,9 @@ public class TransactionController {
     public Response getAllTransactions() {
         return transactionService.getAllTransactions();
     }
+@GetMapping(UrlConstraint.Transaction.GET_TRANSACTION_AMOUNT)
+    public Response getTransactionAmount() {
+        return transactionService.getTransactionAmount();
+}
+
 }
