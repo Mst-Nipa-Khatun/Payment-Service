@@ -99,3 +99,29 @@ public class TransactionServiceImpl implements TransactionService {
         return null;
     }
 }
+//@Override
+//public Response getTransactionAmountBetween(Double minAmount, Double maxAmount) {
+//    if (minAmount == null || maxAmount == null) {
+//        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "Invalid amount range provided");
+//    }
+//
+//    List<TransactionEntity> transactionEntities = transactionRepository.findAllByStatus(1);
+//    if (!transactionEntities.isEmpty()) {
+//        List<TransactionDto> transactionDtos = new ArrayList<>();
+//        for (TransactionEntity transaction : transactionEntities) {
+//            if (transaction.getAmount() == null) {
+//                continue;
+//            }
+//            Double amount = transaction.getAmount();
+//            if (amount >= minAmount && amount <= maxAmount) {
+//                transactionDtos.add(modelMapper.map(transaction, TransactionDto.class));
+//            }
+//        }
+//        if (transactionDtos.isEmpty()) {
+//            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No transactions found in the given range");
+//        }
+//        return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos, "Successfully retrieved transactions");
+//    }
+//    return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "No transactions found");
+//}
+//
