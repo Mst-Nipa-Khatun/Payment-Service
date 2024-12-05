@@ -124,7 +124,8 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Response getTransactionAmountMinMax(Double minAmount, Double maxAmount) {
         if (minAmount == null || maxAmount == null) {
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "Invalid amount range provided");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
+                "Invalid amount range provided");
          }
         List<TransactionEntity> transactionEntities = transactionRepository.findAllByStatus(1);
         if (!transactionEntities.isEmpty()) {
@@ -139,11 +140,14 @@ public class TransactionServiceImpl implements TransactionService {
                 }
             }
             if (transactionDtos.isEmpty()) {
-                return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No transactions found in the given range");
+                return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                        "No transactions found in the given range");
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos, "Successfully retrieved transactions");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos,
+                    "Successfully retrieved transactions");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "No transactions found");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
+                "No transactions found");
     }
 }
 
