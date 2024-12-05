@@ -13,6 +13,6 @@ public interface TransactionRepository extends JpaRepository<TransactionEntity, 
    //List<TransactionEntity> findAllByStatus(Integer status);
   List<TransactionEntity> findByAmountLessThanEqualAndStatus(Double amount, Integer status);
   List<TransactionEntity> findAllByStatus(Integer status);
-  List<TransactionEntity>  findByAmountAndStatus(Double amount, Integer status);
+  //List<TransactionEntity>  findByAmountAndStatus(Double amount, Integer status);
 
 }
