@@ -1,5 +1,6 @@
 package com.PaymentService.controller;
 
+import com.PaymentService.dto.AmountBetweenDto;
 import com.PaymentService.dto.Response;
 import com.PaymentService.dto.TransactionDto;
 import com.PaymentService.service.TransactionService;
@@ -33,10 +34,13 @@ public class TransactionController {
         return transactionService.getTransactionAmountBetween();
   }
 
-   @GetMapping(UrlConstraint.Transaction.GET_AMOUNT_BETWEEN_TWO_RANGE)
-    public Response getTransactionAmountBetweenTwoRange(@PathVariable("amount") Double amount, @RequestBody TransactionDto transactionDto) {
-        return transactionService.getTransactionAmountBetweenTwoRange(amount,transactionDto);
+//@GetMapping(UrlConstraint.Transaction.GET_MIN_MAX_AMOUNT)
+//    public Response getMinMaxTransactionAmount(@RequestBody AmountBetweenDto amountBetweenDto) {
+//    return transactionService.getMinMaxTransactionAmount(amountBetweenDto);
+//}
+@GetMapping(UrlConstraint.Transaction.GET_MIN_MAX_AMOUNT)
+    public Response getTransactionAmountMinMax(@RequestBody Double minAmount, Double maxAmount) {
+        return transactionService.getTransactionAmountMinMax(minAmount,maxAmount);
 }
-
 
 }
