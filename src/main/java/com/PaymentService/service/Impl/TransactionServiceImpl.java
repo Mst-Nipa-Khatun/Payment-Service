@@ -100,7 +100,8 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Response getMinMaxTransactionAmount(AmountBetweenDto amountBetweenDto) {
         if (amountBetweenDto == null || amountBetweenDto.getMinAmount() == null || amountBetweenDto.getMaxAmount() == null) {
-            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "Invalid input: minAmount and maxAmount are required");
+            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
+                    "Invalid input: minAmount and maxAmount are required");
         }
 
         Double minAmount = amountBetweenDto.getMinAmount();
