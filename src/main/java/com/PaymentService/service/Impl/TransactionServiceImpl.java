@@ -64,10 +64,12 @@ public class TransactionServiceImpl implements TransactionService {
                 transactionDtos.add(modelMapper.map(transaction,TransactionDto.class));
 
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,transactionDtos,"Successfully retrieved transactions");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,transactionDtos,
+                    "Successfully retrieved transactions");
         }
 
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transactions found");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "No transactions found");
     }
 
     @Override
