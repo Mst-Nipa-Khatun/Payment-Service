@@ -119,11 +119,14 @@ public class TransactionServiceImpl implements TransactionService {
             }
         }
         if (transactionDtos.isEmpty()) {
-            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No transactions found in the given range");
+            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                    "No transactions found in the given range");
         }
-        return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos, "Successfully retrieved transactions");
+        return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos,
+                "Successfully retrieved transactions");
     }
-    return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "No transactions found");
+    return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
+            "No transactions found");
 
     }
 
