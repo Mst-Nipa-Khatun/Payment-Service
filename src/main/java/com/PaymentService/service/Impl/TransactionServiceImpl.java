@@ -92,7 +92,8 @@ public class TransactionServiceImpl implements TransactionService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,transactionDtos,"Successfully retrieved transactions");
 
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transactions found");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "No transactions found");
     }
 
 //    @Override
