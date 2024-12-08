@@ -34,10 +34,12 @@ public class TransactionServiceImpl implements TransactionService {
             transaction.setStatus(1);
             TransactionEntity savedTransaction= transactionRepository.save(transaction);
             TransactionDto savedTransactionDto=modelMapper.map(savedTransaction,TransactionDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedTransactionDto,"Successfully created transaction");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedTransactionDto,
+                    "Successfully created transaction");
 
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Transaction already exists");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "Transaction already exists");
     }
 
     @Override
