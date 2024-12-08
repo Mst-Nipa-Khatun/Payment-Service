@@ -39,9 +39,9 @@ public class TransactionController {
     return transactionService.getMinMaxTransactionAmount(amountBetweenDto);
 }
 
-@GetMapping(UrlConstraint.Transaction.GET_MIN_MAX_AMOUNT)
-    public Response getTransactionAmountMinMax(@RequestBody Double minAmount, Double maxAmount) {
-        return transactionService.getTransactionAmountMinMax(minAmount,maxAmount);
-}
+//@GetMapping(UrlConstraint.Transaction.GET_MIN_MAX_AMOUNT)
+//    public Response getTransactionAmountMinMax(@RequestBody Double minAmount, Double maxAmount) {
+//        return transactionService.getTransactionAmountMinMax(minAmount,maxAmount);
+//}
 
 }
