@@ -10,5 +10,5 @@ public interface TransactionService {
     Response getTransactionAmount();
     Response getTransactionAmountBetween();
     Response getMinMaxTransactionAmount (AmountBetweenDto amountBetweenDto);
-    Response getTransactionAmountMinMax(Double minAmount, Double maxAmount);
+  //  Response getTransactionAmountMinMax(Double minAmount, Double maxAmount);
 }
