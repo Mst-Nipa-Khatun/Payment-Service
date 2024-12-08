@@ -97,60 +97,64 @@ public class TransactionServiceImpl implements TransactionService {
                 "No transactions found");
     }
 
-//    @Override
-//    public Response getMinMaxTransactionAmount(AmountBetweenDto amountBetweenDto) {
-//        List<TransactionEntity> transactionEntities1=transactionRepository.findByAmountAndStatus(amountBetweenDto.getMinAmount(),amountBetweenDto.getMaxAmount(),1);
-//
-//
-//    List<TransactionEntity> transactionEntities = transactionRepository.findAllByStatus(1);
-//    if (!transactionEntities.isEmpty()) {
-//        List<TransactionDto> transactionDtos = new ArrayList<>();
-//        for (TransactionEntity transaction : transactionEntities) {
-//            if (transaction.getAmount() == null) {
-//                continue;
-//            }
-//            Double amount = transaction.getAmount();
-//            if (amount >= minAmount && amount <= maxAmount) {
-//                transactionDtos.add(modelMapper.map(transaction, TransactionDto.class));
-//            }
-//        }
-//        if (transactionDtos.isEmpty()) {
-//            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No transactions found in the given range");
-//        }
-//        return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos, "Successfully retrieved transactions");
-//    }
-//    return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "No transactions found");
-//
-//    }
-
     @Override
-    public Response getTransactionAmountMinMax(Double minAmount, Double maxAmount) {
-        if (minAmount == null || maxAmount == null) {
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
-                "Invalid amount range provided");
-         }
-        List<TransactionEntity> transactionEntities = transactionRepository.findAllByStatus(1);
-        if (!transactionEntities.isEmpty()) {
-            List<TransactionDto> transactionDtos = new ArrayList<>();
-            for (TransactionEntity transaction : transactionEntities) {
-                if (transaction.getAmount() == null) {
-                    continue;
-                }
-                Double amount = transaction.getAmount();
-                if (amount >= minAmount && amount <= maxAmount) {
-                    transactionDtos.add(modelMapper.map(transaction, TransactionDto.class));
-                }
-            }
-            if (transactionDtos.isEmpty()) {
-                return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
-                        "No transactions found in the given range");
-            }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos,
-                    "Successfully retrieved transactions");
+    public Response getMinMaxTransactionAmount(AmountBetweenDto amountBetweenDto) {
+        if (amountBetweenDto == null || amountBetweenDto.getMinAmount() == null || amountBetweenDto.getMaxAmount() == null) {
+            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "Invalid input: minAmount and maxAmount are required");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
-                "No transactions found");
+
+        Double minAmount = amountBetweenDto.getMinAmount();
+        Double maxAmount = amountBetweenDto.getMaxAmount();
+
+    List<TransactionEntity> transactionEntities = transactionRepository.findAllByStatus(1);
+    if (!transactionEntities.isEmpty()) {
+        List<TransactionDto> transactionDtos = new ArrayList<>();
+        for (TransactionEntity transaction : transactionEntities) {
+            if (transaction.getAmount() == null) {
+                continue;
+            }
+            Double amount = transaction.getAmount();
+            if (amount >= minAmount && amount <= maxAmount) {
+                transactionDtos.add(modelMapper.map(transaction, TransactionDto.class));
+            }
+        }
+        if (transactionDtos.isEmpty()) {
+            return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No transactions found in the given range");
+        }
+        return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos, "Successfully retrieved transactions");
     }
+    return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "No transactions found");
+
+    }
+
+//    @Override
+//    public Response getTransactionAmountMinMax(Double minAmount, Double maxAmount) {
+//        if (minAmount == null || maxAmount == null) {
+//        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
+//                "Invalid amount range provided");
+//         }
+//        List<TransactionEntity> transactionEntities = transactionRepository.findAllByStatus(1);
+//        if (!transactionEntities.isEmpty()) {
+//            List<TransactionDto> transactionDtos = new ArrayList<>();
+//            for (TransactionEntity transaction : transactionEntities) {
+//                if (transaction.getAmount() == null) {
+//                    continue;
+//                }
+//                Double amount = transaction.getAmount();
+//                if (amount >= minAmount && amount <= maxAmount) {
+//                    transactionDtos.add(modelMapper.map(transaction, TransactionDto.class));
+//                }
+//            }
+//            if (transactionDtos.isEmpty()) {
+//                return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+//                        "No transactions found in the given range");
+//            }
+//            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, transactionDtos,
+//                    "Successfully retrieved transactions");
+//        }
+//        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
+//                "No transactions found");
+//    }
 }
 
 
