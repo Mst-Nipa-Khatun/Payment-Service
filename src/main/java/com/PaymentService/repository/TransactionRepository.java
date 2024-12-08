@@ -10,9 +10,8 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<TransactionEntity, Long> {
     TransactionEntity findByTransactionIdAndStatus(Long transactionId, Integer status);
-   //List<TransactionEntity> findAllByStatus(Integer status);
   List<TransactionEntity> findByAmountLessThanEqualAndStatus(Double amount, Integer status);
   List<TransactionEntity> findAllByStatus(Integer status);
-  //List<TransactionEntity>  findByAmountAndStatus(Double amount, Integer status);
+  List<TransactionEntity>  findByAmountAndStatus(Double amount, Integer status);
 
 }
