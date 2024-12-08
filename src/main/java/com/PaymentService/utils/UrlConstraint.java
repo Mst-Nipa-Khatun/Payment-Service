@@ -55,6 +55,7 @@ public final class UrlConstraint {
         public static final String GET_TRANSACTION_AMOUNT="/amount";
         public static final String GET_AMOUNT_BETWEEN="/getAmountBetween";
         public static final String GET_MIN_MAX_AMOUNT="/getMinMaxAmount";
+    public static final String GET_AMOUNT_BETWEEN_MIN_MAX="/getAmountBetweenMinMax";
 
     }
 

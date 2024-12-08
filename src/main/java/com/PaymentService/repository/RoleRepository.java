@@ -12,5 +12,5 @@ public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
     List<RoleEntity> findAllByStatus(Integer status);
 
 //    @Query("select u from RoleEntity u where substring(lower(u.name),1,1) in ('a','e','i','o','u')")
-//    List<RoleEntity> findByRoleNameStartingWithVowel();
+//    List<RoleEntity> findByRoleNameStartingWithVowel();///eita ekta example
 }

@@ -27,21 +27,20 @@ public class TransactionController {
     @GetMapping(UrlConstraint.Transaction.GET_TRANSACTION_AMOUNT)
     public Response getTransactionAmount() {
         return transactionService.getTransactionAmount();
-}
+    }
 
-  @GetMapping(UrlConstraint.Transaction.GET_AMOUNT_BETWEEN)
-  public Response getTransactionAmountBetween() {
+    @GetMapping(UrlConstraint.Transaction.GET_AMOUNT_BETWEEN)
+     public Response getTransactionAmountBetween() {
         return transactionService.getTransactionAmountBetween();
   }
 
-@GetMapping(UrlConstraint.Transaction.GET_MIN_MAX_AMOUNT)
+    @GetMapping(UrlConstraint.Transaction.GET_MIN_MAX_AMOUNT)
     public Response getMinMaxTransactionAmount(@RequestBody AmountBetweenDto amountBetweenDto) {
     return transactionService.getMinMaxTransactionAmount(amountBetweenDto);
-}
-
-//@GetMapping(UrlConstraint.Transaction.GET_MIN_MAX_AMOUNT)
-//    public Response getTransactionAmountMinMax(@RequestBody Double minAmount, Double maxAmount) {
-//        return transactionService.getTransactionAmountMinMax(minAmount,maxAmount);
-//}
+   }
+   @GetMapping(UrlConstraint.Transaction.GET_AMOUNT_BETWEEN_MIN_MAX)
+    public Response getAmountBetweenMinMax(@RequestBody AmountBetweenDto amountBetweenDto) {
+        return transactionService.getAmountBetweenMinMax(amountBetweenDto);
+   }
 
 }
