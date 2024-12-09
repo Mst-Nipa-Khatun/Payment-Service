@@ -11,4 +11,5 @@ public interface UserService {
     Response assignRoleToUser(ConcatIdDto concatIdDto);
     Response editMailAndPassword(EmailAndPasswordDto emailAndPasswordDto);
     Response getVowelUsers();
+    Response getDistinctUsers(String userName, String fullName);
 }

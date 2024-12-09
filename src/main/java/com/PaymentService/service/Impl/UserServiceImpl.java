@@ -178,23 +178,21 @@ public class UserServiceImpl implements UserService {
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
     }
+
+    @Override
+    public Response getDistinctUsers(String userName, String fullName) {
+        List<UsersEntity> usersEntities=usersRepository.findDistinctByUserNameAndFullNameAndStatus(userName,
+                fullName, 1);
+
+//        if (!usersEntities.isEmpty()) {
+//            List<UsersDto> usersDtos=new ArrayList<>();
+//            for (UsersEntity entity : usersEntities) {
+//                usersDtos.add(modelMapper.map(entity, UsersDto.class));
+//            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,usersEntities,"Successfully retrieved User");
+
+       // return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
+    }
 }
 
-//List<UsersEntity> vowelUsers = usersRepository.findAll();
-//        List<RoleEntity> vowelRoles=roleRepository.findAll();
-//
-//        if(!vowelUsers.isEmpty()){
-//            List<UsersDto> usersDtos=new ArrayList<>();
-//            for (UsersEntity usersEntity : vowelUsers) {
-//                if (Objects.isNull(usersEntity.getUserName())) {
-//                    continue;
-//                }
-//                for (RoleEntity roleEntity :usersEntity.getRoleEntityList()) {
-//                    usersDtos.add(modelMapper.map(usersEntity, UsersDto.class));
-//                    break;
-//                }
-//            }
-//            if (usersDtos.isEmpty()) {
-//                return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
-//                        "No Users Found");
-//            }
+
