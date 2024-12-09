@@ -19,6 +19,8 @@ public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
 //    @Query("select u from UsersEntity u where substring(lower(u.userName),1,1) in ('a','e','i','o','u')")
 //    List<UsersEntity> findByUserNameStartingWithVowel();
 
+    List<UsersEntity> findDistinctByUserNameAndFullNameAndStatus(String userName, String fullName, Integer status);
+
 
 
 
