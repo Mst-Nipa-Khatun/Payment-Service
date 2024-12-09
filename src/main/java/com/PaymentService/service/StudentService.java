@@ -9,4 +9,5 @@ public interface StudentService {
      Response getPaymentById(Long id);
      Response deleteById(Long id);
      Response editPaymentById(Long id, StudentDto studentDto);
+     Response getNullAge();
 }

@@ -34,4 +34,8 @@ public class StudentController {
     public Response editPaymentById(@PathVariable("id") Long id,@RequestBody StudentDto studentDto){
         return studentService.editPaymentById(id,studentDto);
     }
+    @GetMapping(UrlConstraint.PaymentService.GET_NULL_AGE)
+    public Response getNullAge(){
+        return studentService.getNullAge();
+    }
 }

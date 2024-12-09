@@ -20,9 +20,9 @@ public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
 //    List<UsersEntity> findByUserNameStartingWithVowel();
 
     List<UsersEntity> findDistinctByUserNameAndFullNameAndStatus(String userName, String fullName, Integer status);
+   List<UsersEntity> findDistinctByFullNameAndUserName(String fullName, String userName);
 
-
-
+   List<UsersEntity> findByUserNameLikeAndStatus(String pattern, Integer status);
 
 
 }

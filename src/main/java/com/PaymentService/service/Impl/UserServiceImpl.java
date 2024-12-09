@@ -180,19 +180,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response getDistinctUsers(String userName, String fullName) {
-        List<UsersEntity> usersEntities=usersRepository.findDistinctByUserNameAndFullNameAndStatus(userName,
-                fullName, 1);
+    public Response getDistinctUsers(String fullName, String userName) {
+        List<UsersEntity> usersEntities = usersRepository.findDistinctByFullNameAndUserName(fullName, userName);
 
-//        if (!usersEntities.isEmpty()) {
-//            List<UsersDto> usersDtos=new ArrayList<>();
-//            for (UsersEntity entity : usersEntities) {
-//                usersDtos.add(modelMapper.map(entity, UsersDto.class));
-//            }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,usersEntities,"Successfully retrieved User");
+        if (!usersEntities.isEmpty()) {
+            List<UsersDto> usersDtos = new ArrayList<>();
 
-       // return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
+            for (UsersEntity entity : usersEntities) {
+                usersDtos.add(modelMapper.map(entity, UsersDto.class));
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, usersDtos, "Successfully retrieved User");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
     }
+
+    @Override
+    public Response getUsernameLike(String pattern) {
+        List<UsersEntity> usersEntities=usersRepository.findByUserNameLikeAndStatus(pattern,1);
+        if (!usersEntities.isEmpty()) {
+            List<UsersDto> usersDtos=new ArrayList<>();
+            for (UsersEntity entity : usersEntities) {
+                usersDtos.add(modelMapper.map(entity, UsersDto.class));
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, usersDtos, "Successfully retrieved User");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
+    }
+
 }
 
 

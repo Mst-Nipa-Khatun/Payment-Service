@@ -11,6 +11,7 @@ public final class UrlConstraint {
         public static final String GET_PAYMENTS_BY_ID ="/get/{id}";
         public static final String DELETE_PAYMENT="/delete/{id}";
         public static final String EDIT_PAYMENT="/edit/{id}";
+        public static final String GET_NULL_AGE="/nullAge";
 
     }
     public static class Company {
@@ -34,6 +35,7 @@ public final class UrlConstraint {
         public static final String GET_VOWEL_USERS="/getVowelUsers";
 
         public static final String GET_DISTINCT_USERS="/getDistinctUsers";
+        public static final String GET_USERNAME_LIKE="/getUserNameLike";
 
     }
     public static class Roles {
