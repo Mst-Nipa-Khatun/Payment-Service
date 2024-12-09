@@ -46,5 +46,9 @@ public class UserController {
     public Response getVowelUsers() {
         return userService.getVowelUsers();
     }
+    @GetMapping(UrlConstraint.Users.GET_DISTINCT_USERS)
+    public Response getDistinctUsers(@RequestParam String userName, @RequestParam String fullName) {
+        return userService.getDistinctUsers(userName,fullName);
+    }
 
 }

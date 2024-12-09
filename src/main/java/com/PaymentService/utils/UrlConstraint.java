@@ -33,6 +33,8 @@ public final class UrlConstraint {
         public static final String EDIT_EMAIL_AND_PASSWORD="/editEmailAndPassword";
         public static final String GET_VOWEL_USERS="/getVowelUsers";
 
+        public static final String GET_DISTINCT_USERS="/getDistinctUsers";
+
     }
     public static class Roles {
         public static final String ROOT="/roles";
