@@ -49,4 +49,9 @@ public class StudentController {
     public Response getStudentsByAge(@RequestParam List<Integer> ages){
         return studentService.getStudentsByAge(ages);
     }
+    @GetMapping(UrlConstraint.PaymentService.GET_STUDENTS_GENDER_BY_IGNORECASE)
+    public Response getStudentsByGender(@RequestParam String gender){
+        return studentService.getStudentsByGender(gender);
+
+    }
 }
