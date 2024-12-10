@@ -18,5 +18,6 @@ public interface StudentRepository extends JpaRepository<StudentEntity,Long> {
     List<StudentEntity> findByAgeIsNullAndStatus(Integer status);
     List<StudentEntity> findByAgeOrderByGenderDesc(Integer age);
     List<StudentEntity> findByAgeIn(Collection<Integer> ages);
+    List<StudentEntity> findByGenderStartsWithIgnoreCase(String gender);
 
 }
