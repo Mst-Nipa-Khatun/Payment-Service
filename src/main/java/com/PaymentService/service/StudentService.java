@@ -14,4 +14,5 @@ public interface StudentService {
      Response getNullAge();
      Response getAgeByGenderDesc(Integer age);
      Response getStudentsByAge(Collection<Integer> ages);
+     Response getStudentsByGender(String gender);
 }
