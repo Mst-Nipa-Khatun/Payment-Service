@@ -6,6 +6,8 @@ import com.PaymentService.service.StudentService;
 import com.PaymentService.utils.UrlConstraint;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(UrlConstraint.PaymentService.ROOT)
 public class StudentController {
@@ -42,5 +44,9 @@ public class StudentController {
     public Response getAgeByGenderDesc(@RequestParam Integer age){
         return studentService.getAgeByGenderDesc(age);
 
+    }
+    @GetMapping(UrlConstraint.PaymentService.GET_STUDENTS_BY_AGE)
+    public Response getStudentsByAge(@RequestParam List<Integer> ages){
+        return studentService.getStudentsByAge(ages);
     }
 }
