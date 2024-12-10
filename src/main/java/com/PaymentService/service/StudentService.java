@@ -10,4 +10,5 @@ public interface StudentService {
      Response deleteById(Long id);
      Response editPaymentById(Long id, StudentDto studentDto);
      Response getNullAge();
+     Response getAgeByGenderDesc(Integer age);
 }
