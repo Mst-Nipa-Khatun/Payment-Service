@@ -133,5 +133,19 @@ public class StudentServiceImpl implements StudentService {
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"Student not found");
     }
 
+    @Override
+    public Response getStudentsByGender(String gender) {
+        List<StudentEntity>studentEntities=studentRepository.findByGenderStartsWithIgnoreCase("Female");
+        if(!studentEntities.isEmpty()){
+            List<StudentDto> studentDtos=new ArrayList<>();
+            for(StudentEntity student: studentEntities){
+                StudentDto studentdto=modelMapper.map(student,StudentDto.class);
+                studentDtos.add(studentdto);
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDtos,"Successfully retrieved");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"Student not found");
+    }
+
 
 }
