@@ -15,5 +15,6 @@ public interface StudentRepository extends JpaRepository<StudentEntity,Long> {
     StudentEntity findByIdAndStatus(long id,Integer status);
 
     List<StudentEntity> findByAgeIsNullAndStatus(Integer status);
+    List<StudentEntity> findByAgeOrderByGenderDesc(Integer age);
 
 }
