@@ -13,6 +13,7 @@ public final class UrlConstraint {
         public static final String EDIT_PAYMENT="/edit/{id}";
         public static final String GET_NULL_AGE="/nullAge";
         public static final String GET_AGE_BY_GENDER_DESC="/getAgeByDESC";
+        public static final String GET_STUDENTS_BY_AGE="/getStudentsByAge";
 
     }
     public static class Company {
