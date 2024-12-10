@@ -38,4 +38,9 @@ public class StudentController {
     public Response getNullAge(){
         return studentService.getNullAge();
     }
+    @GetMapping(UrlConstraint.PaymentService.GET_AGE_BY_GENDER_DESC)
+    public Response getAgeByGenderDesc(@RequestParam Integer age){
+        return studentService.getAgeByGenderDesc(age);
+
+    }
 }
