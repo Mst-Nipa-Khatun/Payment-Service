@@ -104,5 +104,19 @@ public class StudentServiceImpl implements StudentService {
                 "Student not found");
     }
 
+    @Override
+    public Response getAgeByGenderDesc(Integer age) {
+        List<StudentEntity> studentEntities=studentRepository.findByAgeOrderByGenderDesc(13);
+        if(!studentEntities.isEmpty()){
+            List<StudentDto> studentDtos=new ArrayList<>();
+            for(StudentEntity student: studentEntities){
+                StudentDto studentdto=modelMapper.map(student,StudentDto.class);
+                studentDtos.add(studentdto);
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDtos,"Successfully retrieved");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"Student not found");
+    }
+
 
 }
