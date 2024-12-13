@@ -145,7 +145,8 @@ public class UserServiceImpl implements UserService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK, convertemailAndPasswordDto,
                     "Successfully Updated");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                "No Users Found");
     }
 
     @Override
