@@ -44,7 +44,8 @@ public class UserServiceImpl implements UserService {
             usersEntity.setStatus(1);
             UsersEntity savedUsers = usersRepository.save(usersEntity);
             UsersDto convertUsers = modelMapper.map(savedUsers, UsersDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, convertUsers, "Successfully Created");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, convertUsers,
+                    "Successfully Created");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
                 "Username already exists");
