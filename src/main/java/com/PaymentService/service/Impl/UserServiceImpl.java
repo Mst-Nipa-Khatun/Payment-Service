@@ -130,7 +130,8 @@ public class UserServiceImpl implements UserService {
 
         usersEntity.setRoleEntityList(allRoleList);
         usersRepository.save(usersEntity);
-        return ResponseBuilder.getSuccessResponse(HttpStatus.OK, null, "Successfully Assigned Role");
+        return ResponseBuilder.getSuccessResponse(HttpStatus.OK, null,
+                "Successfully Assigned Role");
     }
 
     @Override
