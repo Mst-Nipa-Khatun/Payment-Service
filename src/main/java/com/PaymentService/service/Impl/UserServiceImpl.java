@@ -111,7 +111,8 @@ public class UserServiceImpl implements UserService {
     public Response assignRoleToUser(ConcatIdDto concatIdDto) {
         UsersEntity usersEntity = usersRepository.findByIdAndStatus(concatIdDto.getUserId(), 1);
         if (usersEntity == null) {
-            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "UserId not found");
+            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
+                    "UserId not found");
         }
         RoleEntity roleEntity = roleRepository.findByIdAndStatus(concatIdDto.getRoleId(), 1);
         if (roleEntity == null) {
