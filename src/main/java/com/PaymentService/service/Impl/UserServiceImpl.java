@@ -58,7 +58,8 @@ public class UserServiceImpl implements UserService {
             for (UsersEntity entity : entities) {
                 usersDtos.add(modelMapper.map(entity, UsersDto.class));
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, usersDtos, "Successfully Retrieved");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK, usersDtos,
+                    "Successfully Retrieved");
 
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
