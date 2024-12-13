@@ -176,7 +176,8 @@ public class UserServiceImpl implements UserService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK, usersDtos,
                     "Successfully retrieved User and role");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null, "No Users Found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                "No Users Found");
     }
 
     @Override
