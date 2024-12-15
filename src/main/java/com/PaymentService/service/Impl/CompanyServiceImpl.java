@@ -63,7 +63,8 @@ public class CompanyServiceImpl implements CompanyService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,companyDto,
                     "Company found");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No company found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No company found");
     }
 
     @Override
