@@ -74,7 +74,8 @@ public class CompanyServiceImpl implements CompanyService {
             company.setStatus(0);
             CompanyEntity savedCompany=companyRepository.save(company);
             CompanyDto convertedCompanyDto=modelMapper.map(savedCompany,CompanyDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,convertedCompanyDto,"Company Successfully deleted");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,convertedCompanyDto,
+                    "Company Successfully deleted");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No company found");
     }
