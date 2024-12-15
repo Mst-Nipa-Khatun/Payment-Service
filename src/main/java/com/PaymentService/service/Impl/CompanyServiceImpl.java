@@ -48,7 +48,8 @@ public class CompanyServiceImpl implements CompanyService {
                 companyDtos.add(findCompany);
 
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,companyDtos,"Company found");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,companyDtos,
+                    "Company found");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No company found");
     }
