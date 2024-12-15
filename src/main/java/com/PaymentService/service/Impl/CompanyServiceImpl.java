@@ -93,6 +93,7 @@ public class CompanyServiceImpl implements CompanyService {
                     "Company Edited successfully");
 
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No company found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No company found");
     }
 }
