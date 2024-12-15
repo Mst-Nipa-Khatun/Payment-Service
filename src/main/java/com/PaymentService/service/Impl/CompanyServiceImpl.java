@@ -60,7 +60,8 @@ public class CompanyServiceImpl implements CompanyService {
         CompanyEntity company=companyRepository.findByIdAndStatus(id,1);
         if(company!=null){
             CompanyDto companyDto=modelMapper.map(company,CompanyDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,companyDto,"Company found");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,companyDto,
+                    "Company found");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No company found");
     }
