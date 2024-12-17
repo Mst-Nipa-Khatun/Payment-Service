@@ -82,7 +82,8 @@ public class StudentServiceImpl implements StudentService {
             studentEntity.setStatus(1);//true
             StudentEntity savedStudent=studentRepository.save(studentEntity);
             StudentDto createstudentDto=modelMapper.map(savedStudent,StudentDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,"Successfully updated");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,
+                    "Successfully updated");
 
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
