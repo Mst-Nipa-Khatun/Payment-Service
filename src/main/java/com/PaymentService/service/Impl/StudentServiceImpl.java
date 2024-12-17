@@ -69,7 +69,8 @@ public class StudentServiceImpl implements StudentService {
             studentEntity.setStatus(0);//false kore rakhchi
             StudentEntity student=studentRepository.save(studentEntity);
             StudentDto createstudentDto=modelMapper.map(student,StudentDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,"Successfully deleted");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,
+                    "Successfully deleted");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
                 "Student not found");
