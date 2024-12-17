@@ -85,7 +85,8 @@ public class StudentServiceImpl implements StudentService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,createstudentDto,"Successfully updated");
 
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"Student not found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "Student not found");
     }
 
     @Override
