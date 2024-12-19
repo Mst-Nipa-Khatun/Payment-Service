@@ -35,7 +35,8 @@ public class StudentServiceImpl implements StudentService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,createstudentDto,
                     "Successfully created");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Student already exists");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "Student already exists");
     }
 
     @Override
