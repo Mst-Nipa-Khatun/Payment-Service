@@ -50,7 +50,8 @@ public class StudentServiceImpl implements StudentService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDtos,
                     "Successfully retrieved");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Student not found");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "Student not found");
     }
 
     @Override
