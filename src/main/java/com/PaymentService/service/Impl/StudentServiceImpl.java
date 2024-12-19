@@ -59,7 +59,8 @@ public class StudentServiceImpl implements StudentService {
         StudentEntity studentEntity=studentRepository.findByIdAndStatus(id,1);
         if(studentEntity!=null){
             StudentDto studentDto=modelMapper.map(studentEntity,StudentDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDto,"Successfully retrieved");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDto,
+                    "Successfully retrieved");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"Student not found");
     }
