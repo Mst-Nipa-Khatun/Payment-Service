@@ -47,7 +47,8 @@ public class StudentServiceImpl implements StudentService {
                 StudentDto studentdto=modelMapper.map(student,StudentDto.class);
                 studentDtos.add(studentdto);
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDtos,"Successfully retrieved");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,studentDtos,
+                    "Successfully retrieved");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Student not found");
     }
