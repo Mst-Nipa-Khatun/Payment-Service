@@ -315,6 +315,7 @@ GPA        double(3, 2),
 Group_Name varchar(15),
 primary key (Reg_Num)
 );
+
 INSERT INTO Exam_Result
 VALUES (1001, 101, 3.22, 'Sceince'),
 (1002, 102, 3.44, 'Arts'),
