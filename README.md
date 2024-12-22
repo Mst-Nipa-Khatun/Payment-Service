@@ -279,14 +279,17 @@ select avg(Teacher.Salary) from Teacher;
 select *
 FROM Teacher
 where Salary > 44.06166666666667;
+
 select *
 FROM Teacher
 where Salary > (select avg(Teacher.Salary) from Teacher);
 
 ALTER TABLE Teacher
 ADD Age int(5);
+
 ALTER TABLE Teacher
 ADD Dept varchar(15);
+
 select *
 from Teacher;
 
