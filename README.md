@@ -276,6 +276,157 @@ select min(STUDENTINFORMATION.GPA) from STUDENTINFORMATION;
 select sum(Teacher.Salary) from Teacher;
 select avg(Teacher.Salary) from Teacher;
 
+select *
+FROM Teacher
+where Salary > 44.06166666666667;
+select *
+FROM Teacher
+where Salary > (select avg(Teacher.Salary) from Teacher);
+
+ALTER TABLE Teacher
+ADD Age int(5);
+ALTER TABLE Teacher
+ADD Dept varchar(15);
+select *
+from Teacher;
+
+ALTER TABLE Teacher
+CHANGE Dept Department varchar(15);/*lll*/
+ALTER TABLE Teacher
+DROP COLUMN Age;
+
+SELECT teacher.Department, SUM(Teacher.Salary)
+from Teacher
+GROUP BY Teacher.Department
+ORDER BY SUM(Salary) DESC;
+TRUNCATE TABLE Teacher; /*Only Record Delete hobe*/
+
+
+CREATE TABLE Exam_Result
+(
+Reg_Num    int not null,
+Roll       int,
+GPA        double(3, 2),
+Group_Name varchar(15),
+primary key (Reg_Num)
+);
+INSERT INTO Exam_Result
+VALUES (1001, 101, 3.22, 'Sceince'),
+(1002, 102, 3.44, 'Arts'),
+(1003, 103, 3.21, 'Commerce'),
+(1004, 104, 3.11, 'Sceience'),
+(1005, 105, 4.66, 'Arts');
+
+ALTER TABLE Exam_Result
+DROP COLUMN GPA;
+select *
+from Exam_Result;
+select *
+from STUDENTINFORMATION;
+
+select *
+from STUDENTINFORMATION,
+Exam_Result
+where STUDENTINFORMATION.Roll = Exam_Result.Roll;
+
+select STUDENTINFORMATION.Roll,
+Name,
+Exam_Result.Reg_Num,
+STUDENTINFORMATION.Age,
+Exam_Result.Group_Name,
+STUDENTINFORMATION.Gender
+from STUDENTINFORMATION,
+Exam_Result
+where STUDENTINFORMATION.Roll = Exam_Result.Roll;
+
+select STUDENTINFORMATION.Roll,
+Name,
+Exam_Result.Reg_Num,
+STUDENTINFORMATION.Age,
+Exam_Result.Group_Name,
+STUDENTINFORMATION.Gender
+from STUDENTINFORMATION
+JOIN Exam_Result ON STUDENTINFORMATION.Roll = Exam_Result.Roll;
+
+select STUDENTINFORMATION.Roll,
+Name,
+Exam_Result.Reg_Num,
+STUDENTINFORMATION.Age,
+Exam_Result.Group_Name,
+STUDENTINFORMATION.Gender
+from STUDENTINFORMATION
+INNER JOIN Exam_Result ON STUDENTINFORMATION.Roll = Exam_Result.Roll;
+
+select STUDENTINFORMATION.Roll,
+Name,
+Exam_Result.Reg_Num,
+STUDENTINFORMATION.Age,
+Exam_Result.Group_Name,
+STUDENTINFORMATION.Gender
+from STUDENTINFORMATION
+LEFT JOIN Exam_Result ON STUDENTINFORMATION.Roll = Exam_Result.Roll;
+
+
+select STUDENTINFORMATION.Roll,
+Name,
+Exam_Result.Reg_Num,
+STUDENTINFORMATION.Age,
+Exam_Result.Group_Name,
+STUDENTINFORMATION.Gender
+from STUDENTINFORMATION
+RIGHT JOIN Exam_Result ON STUDENTINFORMATION.Roll = Exam_Result.Roll;
+
+
+CREATE table EmpoloyeeInfo
+(
+Roll   int,
+Name   varchar(20),
+Gender varchar(10),
+Age    int(5),
+GPA    double(3, 2),
+City   varchar(15),
+primary key (Roll)
+);
+select *
+from EmpoloyeeInfo;
+
+INSERT INTO EmpoloyeeInfo
+VALUES (113, 'Nila', 'Female', 25, 3.62, 'KUlna'),
+(114, 'MIm', 'Female', 21, 2.22, 'Barisal'),
+(103, 'Kibria', 'Male', 30, 3.00, 'Dhaka');
+
+SELECT *
+from STUDENTINFORMATION
+UNION
+select *
+from EmpoloyeeInfo;
+SELECT *
+from STUDENTINFORMATION
+UNION ALL
+select *
+from EmpoloyeeInfo;
+
+CREATE VIEW student_view AS
+SELECT Roll, Name, Gender
+from STUDENTINFORMATION;
+select *
+from student_view;
+
+UPDATE student_view
+Set Name='Anis'
+where Roll = 104;
+
+SELECT CURDATE();
+select curtime();
+select NOW();
+
+select ADDDATE('2024-12-15', INTERVAL 5 day);
+select ADDDATE('2024-4-15', INTERVAL 5 MONTH);
+
+SELECT MAKEDATE(2017, 312);
+SELECT DAYNAME('2024-12-22');
+SELECT MONTHNAME('2024-12-22');
+
 
 
 
