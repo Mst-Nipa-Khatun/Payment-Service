@@ -303,6 +303,7 @@ SELECT teacher.Department, SUM(Teacher.Salary)
 from Teacher
 GROUP BY Teacher.Department
 ORDER BY SUM(Salary) DESC;
+
 TRUNCATE TABLE Teacher; /*Only Record Delete hobe*/
 
 
