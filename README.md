@@ -406,6 +406,7 @@ from STUDENTINFORMATION
 UNION
 select *
 from EmpoloyeeInfo;
+
 SELECT *
 from STUDENTINFORMATION
 UNION ALL
