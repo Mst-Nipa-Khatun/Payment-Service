@@ -393,8 +393,8 @@ GPA    double(3, 2),
 City   varchar(15),
 primary key (Roll)
 );
-select *
-from EmpoloyeeInfo;
+
+select *from EmpoloyeeInfo;
 
 INSERT INTO EmpoloyeeInfo
 VALUES (113, 'Nila', 'Female', 25, 3.62, 'KUlna'),
