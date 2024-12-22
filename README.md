@@ -160,6 +160,131 @@ DTO-Dto represent the transfer data object because we need to transfer a data fo
 sometimes we need to few data but we have lots of data in DAO .Then we just create a DTO for few data then those data we used our service and implementation classes.
 
 
+**MySQL Practice:**
+
+CREATE table STUDENTINFORMATION
+(
+Roll   int,
+Name   varchar(20),
+Gender varchar(10),
+Age    int(5),
+GPA    double(3, 2),
+City   varchar(15),
+primary key (Roll)
+);
+select *from STUDENTINFORMATION;
+
+INSERT INTO STUDENTINFORMATION
+VALUES
+(101,'Nipa','Female',25,3.62,'Dhaka'),
+(102,'Ritu','Female',21,2.22,'Dhaka'),
+(103,'Kibria','Male',30,3.00,'Dhaka');
+
+INSERT INTO STUDENTINFORMATION
+VALUES
+(108,'Ariyan','Male',12,4.44,'Pabna'),
+(109,'Keya','Female',23,4.33,'Ctg');
+
+select Name from STUDENTINFORMATION;
+select *from STUDENTINFORMATION where Roll=101;
+select *from STUDENTINFORMATION where Name='Nipa';
+select City from STUDENTINFORMATION;
+select * from STUDENTINFORMATION LIMIT 4;
+
+SELECT Name FROM STUDENTINFORMATION order by Name;
+SELECT Name,Roll,GPA FROM STUDENTINFORMATION order by Name;
+
+SELECT Name FROM STUDENTINFORMATION order by Name DESC ;
+
+select Name,GPA from STUDENTINFORMATION order by GPA;
+select Name,GPA from STUDENTINFORMATION order by GPA DESC ;
+select 5+2;
+select 5/2;
+
+select DISTINCT STUDENTINFORMATION.City from STUDENTINFORMATION where Gender='Female';
+select *from STUDENTINFORMATION where Age>=20;
+select *from STUDENTINFORMATION where Roll between 102 and 105;
+select *from STUDENTINFORMATION where Roll>105 OR City='Dhaka';
+select *from STUDENTINFORMATION where Gender='Male' OR GPA<=3.00;
+
+select *from STUDENTINFORMATION where STUDENTINFORMATION.City='Dhaka' AND (Gender='Male' OR GPA<=3.00);
+select *from STUDENTINFORMATION where STUDENTINFORMATION.City='Dhaka' AND (Gender='Male' AND GPA<=3.00);
+select *from STUDENTINFORMATION where STUDENTINFORMATION.City='Dhaka' OR (Gender='Male' AND GPA<=3.00);
+select *from STUDENTINFORMATION where STUDENTINFORMATION.City='Dhaka' OR (Gender='Male' or GPA<=3.00);
+
+select *from STUDENTINFORMATION where STUDENTINFORMATION.City='Dhaka'or City='Pabna' or City='Ctg';
+
+select *from STUDENTINFORMATION where STUDENTINFORMATION.City IN ('Dhaka','Ctg');
+select *from STUDENTINFORMATION where STUDENTINFORMATION.City NOT IN ('Dhaka','Ctg');
+select *from STUDENTINFORMATION where Name LIKE 'A%';
+select *from STUDENTINFORMATION where Name LIKE '%A%';
+select *from STUDENTINFORMATION where Name LIKE '%A';
+
+select *from STUDENTINFORMATION where Name LIKE '__p%';
+select *from STUDENTINFORMATION where Name LIKE '%y_';
+select STUDENTINFORMATION.Roll AS Id ,STUDENTINFORMATION.Name AS 'First Name' from STUDENTINFORMATION;
+
+CREATE TABLE Teacher
+(
+Id int not null auto_increment,
+Name varchar(15) not null ,
+Salary double,
+primary key (Id)
+
+);
+
+select *from Teacher;
+
+INSERT INTO Teacher
+VALUES
+(1,'nipa',3.33),
+(2,'kibria',2.42),
+(3,'Aria',3.62);
+
+INSERT INTO Teacher(Name,Salary)
+VALUES
+('Jakaria',67),
+('Golam',88),
+('Sheikh',100);
+UPDATE Teacher SET Salary=2.32 where Id=2;
+UPDATE Teacher SET Name='Nila' where Id=3;
+UPDATE Teacher SET Salary=Salary+2 where Salary<=2;
+UPDATE Teacher SET Salary=Salary-2 where Salary>=2;
+
+DELETE  FROM Teacher where Id=2;
+
+SELECT UPPER('I am nipa khatun');
+SELECT LOWER('I AM NIPA KHATUN');
+
+select upper(STUDENTINFORMATION.City) from STUDENTINFORMATION;
+select upper(STUDENTINFORMATION.City) AS 'City New Name' from STUDENTINFORMATION;
+select LOWER(STUDENTINFORMATION.City) from STUDENTINFORMATION;
+
+select concat('Am Nipa',' & Who r u ?');
+select concat(STUDENTINFORMATION.Name,' is a ',STUDENTINFORMATION.Age,' years old') As Students from STUDENTINFORMATION;
+select greatest(12,80,76,56) ;
+select pow(3,2);
+select log(2);
+select truncate(12.09877,2);
+select truncate(log(2),2);
+select exp(3);
+
+describe STUDENTINFORMATION;
+select count(*) from STUDENTINFORMATION;
+select max(STUDENTINFORMATION.GPA) from STUDENTINFORMATION;
+select min(STUDENTINFORMATION.GPA) from STUDENTINFORMATION;
+select sum(Teacher.Salary) from Teacher;
+select avg(Teacher.Salary) from Teacher;
+
+
+
+
+
+
+
+
+
+
 
 
 
