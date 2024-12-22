@@ -416,6 +416,7 @@ from EmpoloyeeInfo;
 CREATE VIEW student_view AS
 SELECT Roll, Name, Gender
 from STUDENTINFORMATION;
+
 select *
 from student_view;
 
