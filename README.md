@@ -294,7 +294,8 @@ select *
 from Teacher;
 
 ALTER TABLE Teacher
-CHANGE Dept Department varchar(15);/*lll*/
+CHANGE Dept Department varchar(15);
+
 ALTER TABLE Teacher
 DROP COLUMN Age;
 
