@@ -24,11 +24,17 @@ public class BalanceServiceImpl implements BalanceService {
     public Response createBalance(BalanceDto balanceDto) {
         BalanceEntity balance=balanceRepository.findByBalanceAndStatus(balanceDto.getBalance(),1);
         if(balance==null){
-            balance=modelMapper.map(balanceDto, BalanceEntity.class);
+            balance=new BalanceEntity();
             balance.setStatus(1);
-            balanceRepository.save(balance);
-            BalanceDto createdBalanceDto=modelMapper.map(balance, BalanceDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,createdBalanceDto,"Successfully Created Balance");
+            balance.setBalance(balanceDto.getBalance());
+            balance.setEffectiveBalance(balanceDto.getEffectiveBalance());
+            balance.setLienBalance(balanceDto.getLienBalance());
+            balance.setCurrency(balanceDto.getCurrency());
+            balance.setAccountId(balanceDto.getAccountId());
+            balance.setUserId(balanceDto.getUserId());
+
+            BalanceEntity savedBalanced=balanceRepository.save(balance);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedBalanced,"Successfully Created Balance");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Balance already exists");
     }

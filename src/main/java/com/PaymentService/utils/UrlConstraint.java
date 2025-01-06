@@ -70,5 +70,10 @@ public final class UrlConstraint {
         public static final String CREATE="/create";
 
     }
+    public static class Account{
+        public static final String ROOT="/account";
+        public static final String CREATE="/create";
+
+    }
 
     }
