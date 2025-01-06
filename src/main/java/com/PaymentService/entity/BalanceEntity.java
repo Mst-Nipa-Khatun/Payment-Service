@@ -14,9 +14,9 @@ public class BalanceEntity extends BaseEntity{
     @Column(name = "Balance")
     private double balance;
     @Column(name = "Currency")
-    private String currency;
+    private double currency;
     @Column(name = "LioBalance")
-    private String lioBalance;
+    private double lioBalance;
     @Column(name = "Account")
     private String account;
 }
