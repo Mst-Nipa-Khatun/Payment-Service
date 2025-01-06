@@ -65,5 +65,10 @@ public final class UrlConstraint {
     public static final String GET_AMOUNT_BETWEEN_MIN_MAX="/getAmountBetweenMinMax";
 
     }
+    public static class Balance{
+        public static final String ROOT="/balance";
+        public static final String CREATE="/create";
+
+    }
 
     }
