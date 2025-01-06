@@ -15,11 +15,11 @@ public class AccountEntity extends BaseEntity{
     private String accName;
 
     @Column(name = "accNumber")
-    private Double accNumber;
+    private String accNumber;
 
     @Column(name = "region")
     private String region;
 
     @Column(name = "accType")
-    private String accType;
+    private Integer accType;
 }
