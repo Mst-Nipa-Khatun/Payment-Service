@@ -10,17 +10,12 @@ import lombok.Data;
 @Entity
 @Table(name = "Account")
 public class AccountEntity extends BaseEntity{
-//    accName varchar(20),
-//    accNumber double,
-//    status int,
-//    region varchar(15),
-//    accType varchar(15)
-    @Id
+
     @Column(name = "accName")
     private String accName;
 
     @Column(name = "accNumber")
-    private double accNumber;
+    private Double accNumber;
 
     @Column(name = "region")
     private String region;
