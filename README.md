@@ -694,6 +694,102 @@ WHERE w1.Temperature > w2.Temperature;
 
 
 
+**InterViewTest**
+
+CREATE DATABASE BusinessAutomation;
+
+use BusinessAutomation;
+CREATE TABLE Employees
+(
+id         int,
+name       varchar(15),
+occupation varchar(15),
+salary     double,
+leader_id  int,
+primary key (id)
+);
+SELECT *
+FROM Employees;
+INSERT INTO Employees
+VALUES (1, 'Joshim', 'Doctor', 45000, 1),
+(2, 'Aleya', 'Doctor', 15000, 1),
+(3, 'Galib', 'Engineer', 12000, 5),
+(4, 'Caynath', 'Professor', 17000, 6),
+(5, 'Majbah Habib', 'Singer', 35000, 6),
+(6, 'Sanjidah', 'Singer', 40000, 0),
+(7, 'Jui akter', 'Singer', 20000, 6),
+(8, 'Korim', 'Architct', 5000, 5);
+
+
+CREATE TABLE Salary
+(
+id              int,
+employee_id     int,
+month           varchar(15),
+given_salary    double,
+deferred_amount double,
+primary key (id)
+);
+SELECT *
+FROM Salary;
+INSERT INTO Salary
+VALUES (1, 1, 'January', 45000, 5000),
+(2, 1, 'February', 45000, 5000),
+(3, 2, 'January', 15000, 500),
+(4, 3, 'March', 12000, 120),
+(5, 3, 'February', 12000, 120),
+(6, 3, 'March', 12000, 0),
+(7, 4, 'June', 17000, 1700),
+(8, 4, 'July', 17000, 1700),
+(9, 4, 'June', 17000, 0),
+(10, 5, 'January', 30000, 0),
+(11, 5, 'February', 35000, 3500),
+(12, 6, 'March', 35000, 250),
+(13, 6, 'April', 40000, 500);
+
+
+
+SELECT e.name
+FROM employees e
+where not exists(select 1
+from salary s
+where e.id = s.employee_id
+and trim(lower(s.month)) = 'april');
+
+
+
+SELECT e1.name,
+e1.occupation,
+e1.salary,
+(select e2.name from Employees e2 where e2.id = e1.leader_id) as leaderName
+FROM Employees e1
+ORDER BY e1.salary DESC
+limit 1 offset 1;
+
+
+
+SELECT *
+FROM employees e
+where exists(select 1
+from salary s
+where e.id = s.employee_id
+and trim(lower(s.month)) = 'january' AND trim(lower(s.month)) != 'february');
+
+
+SELECT *
+FROM employees e
+where exists(select 1
+from salary s
+where e.id = s.employee_id
+and trim(lower(s.month)) = 'january')
+and not exists(select 1
+from salary s
+where e.id = s.employee_id
+and trim(lower(s.month)) = 'february');
+
+
+
+
 
 
 
