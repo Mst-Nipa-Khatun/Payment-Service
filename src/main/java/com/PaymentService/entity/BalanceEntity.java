@@ -17,5 +17,4 @@ public class BalanceEntity extends BaseEntity{
     private String lioBalance;
     @Column(name = "Account")
     private String account;
-
 }
