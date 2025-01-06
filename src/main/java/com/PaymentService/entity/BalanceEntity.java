@@ -10,29 +10,21 @@ import lombok.Data;
 @Entity
 @Table(name = "BALANCE")
 public class BalanceEntity extends BaseEntity{
-//    balance double,
-//    effectiveBalance double,
-//    lienBalance double,
-//    currency double,
-//    status int,
-//    userId int,
-//    accountId int
-    @Id
     @Column(name = "balance")
-    private double balance;
+    private Double balance;
 
     @Column(name = "effectiveBalance")
-    private double effectiveBalance;
+    private Double effectiveBalance;
 
     @Column(name = "lienBalance")
-    private double lienBalance;
+    private Double lienBalance;
 
     @Column(name = "currency")
-    private double currency;
+    private Double currency;
 
     @Column(name = "userId")
-    private int userId;
+    private Long userId;
 
     @Column(name = "accountId")
-    private int accountId;
+    private Long accountId;
 }
