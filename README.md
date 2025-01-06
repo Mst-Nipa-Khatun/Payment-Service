@@ -437,6 +437,260 @@ SELECT MONTHNAME('2024-12-22');
 
 
 
+CREATE TABLE Person
+(
+personId  int(5),
+lastName  varchar(15),
+firstName varchar(15),
+primary key (personId)
+);
+SELECT *
+from Person;
+INSERT INTO Person
+VALUES (1, 'Wang', 'Allen'),
+(2, 'Alice', 'Bob');
+
+
+CREATE TABLE Address
+(
+addressId int(5),
+personId  int(5),
+city      varchar(15),
+state     varchar(15),
+primary key (addressId)
+);
+select *
+from Address;
+
+INSERT INTO Address
+values (1, 2, 'New York', 'NY'),
+(2, 3, 'Leetcode', 'California');
+
+
+select ps.firstName, ps.lastName, ad.city, ad.state
+FROM Person ps
+Left JOIN Address ad ON ps.personId = ad.personId;
+
+CREATE TABLE Employee
+(
+id        int(5),
+name      varchar(14),
+salary    int(6),
+managerId int(5),
+primary key (id)
+);
+select *
+from Employee;
+
+INSERT INTO Employee
+VALUES (1, 'Joe', 70000, 3),
+(2, 'Henry', 80000, 4);
+INSERT INTO Employee(id, name, salary)
+VALUES (3, 'Sam', 60000),
+(4, 'Max', 90000);
+TRUNCATE TABLE Employee;
+
+select Max(salary)
+from Employee;
+
+select *
+from Employee
+where salary
+IN (select Max(salary) from Employee GROUP BY managerId);
+
+select *
+from Employee
+where managerId = id
+AND salary > Employee.managerId;
+
+select e.name AS Employee
+from Employee e
+inner join Employee e2
+on e.managerId = e2.id
+where e.salary > e2.salary;
+
+
+CREATE TABLE PersonTable
+(
+id    int(5),
+email varchar(15)
+);
+select *
+from PersonTable;
+INSERT INTO PersonTable
+values (1, 'a@.com'),
+(2, 'c@.com'),
+(3, 'a@.com');
+
+SELECT email,max(id)
+FROM PersonTable
+GROUP BY  email
+HAVING COUNT(email) > 1;
+
+
+SELECT *
+FROM PersonTable;
+
+    SELECT email
+    FROM PersonTable
+
+    HAVING COUNT(email) > 1;
+
+SELECT max(id)
+FROM PersonTable
+GROUP BY email;
+
+SELECT distinct MIN(id) as id
+FROM PersonTable
+GROUP BY email
+having count(email)>1;
+
+WITH dublicateMinimumId AS (
+SELECT MIN(id) AS id
+FROM PersonTable
+GROUP BY email
+HAVING COUNT(email) > 1
+)
+DELETE FROM PersonTable
+WHERE id IN (SELECT id FROM dublicateMinimumId);
+
+select * from PersonTable;
+
+
+
+
+
+
+
+
+CREATE TABLE Customers
+(
+id   int(5),
+name varchar(15),
+primary key (id)
+
+);
+select *
+from Customers;
+INSERT INTO Customers
+VALUES (1, 'Joe'),
+(2, 'Henry'),
+(3, 'Sam'),
+(4, 'Max');
+
+CREATE TABLE Orders
+(
+id         int(5),
+customerId int(5),
+primary key (id)
+);
+select *
+from Orders;
+
+INSERT INTO Orders
+values (1, 3),
+(2, 1);
+
+select c.name AS Customers
+from Customers c
+left join Orders o on c.id = o.customerId
+where o.customerId is NULL;
+
+
+CREATE TABLE Person2
+(
+id    int(5),
+email varchar(15)
+);
+select *
+from person2;
+INSERT INTO person2
+values (1, 'a@.com'),
+(2, 'c@.com'),
+(3, 'a@.com');
+
+
+DELETE p
+FROM Person2 p
+JOIN Person2 p2 ON p.email = p2.email
+WHERE p.id > p2.id;
+
+-- 577. Employee Bonus
+CREATE TABLE Employee2
+(
+empId      int(5),
+name       varchar(20),
+superVisor int(5),
+salary     int(5)
+
+);
+select *
+from Employee2;
+
+INSERT INTO Employee2
+values (3, 'Brad', null, 4000),
+(1, 'John', 3, 1000),
+(2, 'Dan', 3, 2000),
+(4, 'Thomas', 3, 4000);
+
+CREATE TABLE Bonus
+(
+empId int(5),
+bonus int(5)
+);
+select *
+from Bonus;
+INSERT INTO Bonus
+VALUES (2, 500),
+(4, 2000);
+
+SELECT e.name, b.bonus
+from Employee2 e
+Left JOIN Bonus b ON e.empId=b.empId where IFNULL(b.bonus, 0) < 1000; ;
+
+CREATE TABLE Cusomer2
+(
+id int(5),
+name varchar(20),
+referee_id int(5),
+primary key (id)
+);
+select *from Cusomer2;
+INSERT INTO Cusomer2
+values
+(1,'Will',null),
+(2,'Jane',null),
+(3,'Alex',2),
+(4,'Bill',null),
+(5,'Zack',1),
+(6,'Mark',2);
+
+
+SELECT c.name from Cusomer2 c where c.referee_id is null OR referee_id !=2 ;
+
+
+
+CREATE TABLE Weather (
+Id INT PRIMARY KEY,
+RecordDate DATE NOT NULL,
+Temperature INT NOT NULL
+);
+
+
+
+INSERT INTO Weather (Id, RecordDate, Temperature)
+VALUES
+(1, '2021-01-01', 10),
+(2, '2021-01-02', 25),
+(3, '2021-01-03', 20),
+(4, '2021-01-04', 30);
+
+
+SELECT w1.Id
+FROM Weather w1
+JOIN Weather w2
+ON w1.RecordDate = DATE_ADD(w2.RecordDate, INTERVAL 1 DAY)
+WHERE w1.Temperature > w2.Temperature;
 
 
 
