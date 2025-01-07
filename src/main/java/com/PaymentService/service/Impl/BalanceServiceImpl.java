@@ -28,17 +28,18 @@ public class BalanceServiceImpl implements BalanceService {
     public Response createBalance(BalanceDto balanceDto) {
         //user table theke id onujay khujlam actualy user ase kina,jodi na thake then not found,otherwise
         //jodi thake tahole oi user k balance table e ase kina abr user id diye balance table e khjte hobe.
+        //tarpore balance  table thakle balance er sathe new balancedto get korte hhobe
+        //r jodi balance null hoy taahole new object create kore balnce set get kore create korte hobe.
 
-        UsersEntity usersEntity=usersRepository.findByIdAndStatus(balanceDto.getUserId(),1);
-        if(usersEntity==null){
-            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"User not found");
+
+        UsersEntity usersEntity = usersRepository.findByIdAndStatus(balanceDto.getUserId(), 1);
+        if (usersEntity == null) {
+            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "User not found");
         }
-        /*ekhane userId diye khujte hobe not balance in balance table*/
-       // BalanceEntity balance=balanceRepository.findByBalanceAndStatus(balanceDto.getBalance(),1);
 
-        BalanceEntity balance=balanceRepository.findByUserIdAndStatus(balanceDto.getUserId(),1);
-        if(balance==null){
-            balance=new BalanceEntity();
+        BalanceEntity balance = balanceRepository.findByUserIdAndStatus(balanceDto.getUserId(), 1);
+        if (balance == null) {
+            balance = new BalanceEntity();
             balance.setStatus(1);
             balance.setBalance(balanceDto.getBalance());
             balance.setEffectiveBalance(balanceDto.getEffectiveBalance());
@@ -47,14 +48,16 @@ public class BalanceServiceImpl implements BalanceService {
             balance.setAccountId(balanceDto.getAccountId());
             balance.setUserId(balanceDto.getUserId());
 
-            BalanceEntity savedBalanced=balanceRepository.save(balance);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedBalanced,
+            BalanceEntity savedBalanced = balanceRepository.save(balance);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, savedBalanced,
                     "Successfully Created Balance");
         }
+        balance.setBalance(balance.getBalance() + balanceDto.getBalance());
+        //usersRepository.save(usersEntity);
+       BalanceEntity b= balanceRepository.save(balance);
 
-        balance.setBalance(balance.getBalance()+balanceDto.getBalance());
+        return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, b,
+                "Balance already created");
 
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
-                "Balance already exists");
     }
 }
