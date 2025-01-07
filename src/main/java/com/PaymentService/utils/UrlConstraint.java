@@ -68,6 +68,10 @@ public final class UrlConstraint {
     public static class Balance{
         public static final String ROOT="/balance";
         public static final String CREATE="/create";
+        public static final String GET_ALL="/all";
+        public static final String GET_BALANCE_BY_ID ="/get/{id}";
+        public static final String DELETE_BALANCE_BY_ID ="/delete/{id}";
+        public static final String EDIT_BALANCE_BY_ID ="/edit/{id}";
 
     }
     public static class Account{
