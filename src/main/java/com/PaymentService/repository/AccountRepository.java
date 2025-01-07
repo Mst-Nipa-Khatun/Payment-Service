@@ -10,6 +10,6 @@ import java.util.List;
 public interface AccountRepository extends JpaRepository<AccountEntity,Long> {
 
     AccountEntity findByAccNameAndStatus(String accName,Integer status);
-    List<AccountEntity> findAllByAndStatus(Integer status);
+    List<AccountEntity> findAllByStatus(Integer status);
     AccountEntity findByIdAndStatus(Long id,Integer status);
 }
