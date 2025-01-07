@@ -42,7 +42,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Response getAllAccount() {
-        List<AccountEntity> accountEntities=accountRepository.findAllByAndStatus(1);
+        List<AccountEntity> accountEntities=accountRepository.findAllByStatus(1);
         if(!accountEntities.isEmpty()){
             List<AccountDto> accountDtos=new ArrayList<>();
             for(AccountEntity accountEntity:accountEntities){
