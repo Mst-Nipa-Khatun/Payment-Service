@@ -58,7 +58,7 @@ public class AccountServiceImpl implements AccountService {
     public Response getAccountById(Long id) {
         AccountEntity account=accountRepository.findByIdAndStatus(id,1);
         if(account !=null){
-            account.setAccName(""+account.getAccNumber());
+            account.setAccName(""+account.getAccName());
             account.setAccNumber(account.getAccNumber());
             account.setRegion(account.getRegion());
             account.setAccType(account.getAccType());
@@ -66,6 +66,37 @@ public class AccountServiceImpl implements AccountService {
 
            // AccountDto accountDto=modelMapper.map(account,AccountDto.class);
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,accountEntity,"Get Account");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No account found");
+    }
+
+    @Override
+    public Response deleteAccountById(Long id) {
+        AccountEntity account=accountRepository.findByIdAndStatus(id,1);
+        if(account!=null){
+            account.setStatus(0);
+            account.setAccName(account.getAccName());
+            account.setAccNumber(account.getAccNumber());
+            account.setRegion(account.getRegion());
+            account.setAccType(account.getAccType());
+            AccountEntity accountEntity=accountRepository.save(account);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,accountEntity,"Deleted Account");
+
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No account found");
+    }
+
+    @Override
+    public Response editAccountById(Long id, AccountDto accountDto) {
+        AccountEntity account=accountRepository.findByIdAndStatus(id,1);
+        if(account!=null){
+            account.setStatus(1);
+            account.setAccName(accountDto.getAccName());
+            account.setAccNumber(accountDto.getAccNumber());
+            account.setRegion(accountDto.getRegion());
+            account.setAccType(accountDto.getAccType());
+            AccountEntity accountEntity=accountRepository.save(account);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,accountEntity,"Edit Account");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No account found");
     }

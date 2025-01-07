@@ -27,4 +27,12 @@ public class AccountController {
     public Response getAccountById(@PathVariable("id") long id) {
         return accountService.getAccountById(id);
     }
+    @DeleteMapping(UrlConstraint.Account.DELETE_ACCOUNT_BY_ID)
+    public Response deleteAccountById(@PathVariable("id") long id) {
+        return accountService.deleteAccountById(id);
+    }
+    @PutMapping(UrlConstraint.Account.EDIT_ACCOUNT_BY_ID)
+    public Response editAccountById(@PathVariable("id") long id, @RequestBody AccountDto accountDto) {
+        return accountService.editAccountById(id,accountDto);
+    }
 }
