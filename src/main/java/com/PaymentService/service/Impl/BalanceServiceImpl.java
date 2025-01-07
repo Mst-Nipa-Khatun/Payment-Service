@@ -12,6 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class BalanceServiceImpl implements BalanceService {
     private final BalanceRepository balanceRepository;
@@ -26,12 +29,6 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     public Response createBalance(BalanceDto balanceDto) {
-        //user table theke id onujay khujlam actualy user ase kina,jodi na thake then not found,otherwise
-        //jodi thake tahole oi user k balance table e ase kina abr user id diye balance table e khjte hobe.
-        //tarpore balance  table thakle balance er sathe new balancedto get korte hhobe
-        //r jodi balance null hoy taahole new object create kore balnce set get kore create korte hobe.
-
-
         UsersEntity usersEntity = usersRepository.findByIdAndStatus(balanceDto.getUserId(), 1);
         if (usersEntity == null) {
             return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "User not found");
@@ -53,11 +50,84 @@ public class BalanceServiceImpl implements BalanceService {
                     "Successfully Created Balance");
         }
         balance.setBalance(balance.getBalance() + balanceDto.getBalance());
-        //usersRepository.save(usersEntity);
        BalanceEntity b= balanceRepository.save(balance);
 
         return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED, b,
                 "Balance already created");
 
+    }
+
+    @Override
+    public Response getAllBalance() {
+        List<BalanceEntity> balanceEntities=balanceRepository.findAllByStatus(1);
+        if (!balanceEntities.isEmpty()) {
+            List<BalanceDto> balanceDtos=new ArrayList<>();
+            for(BalanceEntity balance:balanceEntities) {
+//                balance.setBalance(balance.getBalance());
+//                balance.setEffectiveBalance(balance.getEffectiveBalance());
+//                balance.setLienBalance(balance.getLienBalance());
+//                balance.setCurrency(balance.getCurrency());
+//                balance.setAccountId(balance.getAccountId());
+//                balance.setUserId(balance.getUserId());
+//                BalanceEntity savedBalanced = balanceRepository.save(balance);
+//                balanceDtos.add(savedBalanced);
+
+                BalanceDto bd=modelMapper.map(balance, BalanceDto.class);
+                balanceDtos.add(bd);
+            }
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,balanceDtos,"Successfully Retrieved Balance");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No balance found");
+    }
+
+    @Override
+    public Response getBalanceById(Long id) {
+        BalanceEntity balance=balanceRepository.findByIdAndStatus(id,1);
+        if(balance !=null){
+            balance.setBalance(balance.getBalance());
+            balance.setEffectiveBalance(balance.getEffectiveBalance());
+            balance.setLienBalance(balance.getLienBalance());
+            balance.setCurrency(balance.getCurrency());
+            balance.setAccountId(balance.getAccountId());
+            balance.setUserId(balance.getUserId());
+            BalanceEntity savedBalanced=balanceRepository.save(balance);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedBalanced,"Successfully Retrieved Balance");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No balance found");
+    }
+
+    @Override
+    public Response deleteBalanceById(Long id) {
+        BalanceEntity balance=balanceRepository.findByIdAndStatus(id,1);
+        if (balance != null) {
+            balance.setStatus(0);
+            balance.setBalance(balance.getBalance());
+            balance.setEffectiveBalance(balance.getEffectiveBalance());
+            balance.setLienBalance(balance.getLienBalance());
+            balance.setCurrency(balance.getCurrency());
+            balance.setAccountId(balance.getAccountId());
+            balance.setUserId(balance.getUserId());
+            BalanceEntity savedBalanced=balanceRepository.save(balance);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedBalanced,"Successfully Deleted Balance");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No balance found");
+    }
+
+    @Override
+    public Response editBalanceById(Long id, BalanceDto balanceDto) {
+        BalanceEntity balance=balanceRepository.findByIdAndStatus(id,1) ;
+        if (balance != null) {
+            balance.setStatus(1);
+            balance.setBalance(balanceDto.getBalance());
+            balance.setEffectiveBalance(balanceDto.getEffectiveBalance());
+            balance.setLienBalance(balanceDto.getLienBalance());
+            balance.setCurrency(balanceDto.getCurrency());
+            balance.setAccountId(balanceDto.getAccountId());
+            balance.setUserId(balanceDto.getUserId());
+            BalanceEntity savedBalanced=balanceRepository.save(balance);
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedBalanced,"Successfully Updated Balance");
+        }
+
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No balance found");
     }
 }
