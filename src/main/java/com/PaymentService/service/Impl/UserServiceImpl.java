@@ -4,6 +4,7 @@ import com.PaymentService.dto.*;
 import com.PaymentService.entity.CompanyEntity;
 import com.PaymentService.entity.RoleEntity;
 import com.PaymentService.entity.UsersEntity;
+import com.PaymentService.repository.BalanceRepository;
 import com.PaymentService.repository.CompanyRepository;
 import com.PaymentService.repository.RoleRepository;
 import com.PaymentService.repository.UsersRepository;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -23,12 +25,14 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final CompanyRepository companyRepository;
     private final RoleRepository roleRepository;
+    private final BalanceRepository balanceRepository;
 
-    public UserServiceImpl(UsersRepository usersRepository, ModelMapper modelMapper, CompanyRepository companyRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(UsersRepository usersRepository, ModelMapper modelMapper, CompanyRepository companyRepository, RoleRepository roleRepository, BalanceRepository balanceRepository) {
         this.usersRepository = usersRepository;
         this.modelMapper = modelMapper;
         this.companyRepository = companyRepository;
         this.roleRepository = roleRepository;
+        this.balanceRepository = balanceRepository;
     }
 
     @Override
@@ -216,6 +220,24 @@ public class UserServiceImpl implements UserService {
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
                 "No Users Found");
+    }
+
+    @Override
+    public Response getUsersDetails() {
+        List<Map<String, Object>> details = balanceRepository.findByDetails();
+        if (!details.isEmpty()){
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,details,"Successfully retrieved User");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,"No Users Found");
+    }
+
+    @Override
+    public Response getUsersDetailsTwo() {
+        List<UserDetailsProjection> b=balanceRepository.findByDetails2ndApproach();
+        if (!b.isEmpty()){
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,b,"Successfully retrieved User");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,"No Users Found");
     }
 
 }
