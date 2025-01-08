@@ -39,6 +39,8 @@ public final class UrlConstraint {
 
         public static final String GET_DISTINCT_USERS="/getDistinctUsers";
         public static final String GET_USERNAME_LIKE="/getUserNameLike";
+        public static final String GET_USERS_DETAILS="/getUserDetails";
+        public static final String GET_USERS_DETAILS_TWO="/getUserDetailsTwo";
 
     }
     public static class Roles {
