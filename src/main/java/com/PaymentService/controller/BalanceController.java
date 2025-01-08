@@ -35,4 +35,5 @@ public class BalanceController {
     public Response editBalanceById(@PathVariable("id") Long id, @RequestBody BalanceDto balanceDto) {
         return balanceService.editBalanceById(id,balanceDto);
     }
+
 }
