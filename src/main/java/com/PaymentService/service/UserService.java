@@ -13,4 +13,6 @@ public interface UserService {
     Response getVowelUsers();
     Response getDistinctUsers(String fullName, String userName);
     Response getUsernameLike(String pattern);
+    Response getUsersDetails();
+    Response getUsersDetailsTwo();
 }
