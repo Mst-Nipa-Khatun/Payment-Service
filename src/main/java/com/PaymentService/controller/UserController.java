@@ -55,4 +55,14 @@ public class UserController {
         return userService.getUsernameLike(pattern);
     }
 
+    @GetMapping(UrlConstraint.Users.GET_USERS_DETAILS)
+    public Response getUsersDetails() {
+        return userService.getUsersDetails();
+    }
+
+    @GetMapping(UrlConstraint.Users.GET_USERS_DETAILS_TWO)
+    public Response getUsersDetailsTwo() {
+        return userService.getUsersDetailsTwo();
+    }
+
 }
