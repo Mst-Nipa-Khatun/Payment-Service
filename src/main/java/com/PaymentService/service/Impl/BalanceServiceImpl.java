@@ -108,7 +108,8 @@ public class BalanceServiceImpl implements BalanceService {
             balance.setAccountId(balance.getAccountId());
             balance.setUserId(balance.getUserId());
             BalanceEntity savedBalanced=balanceRepository.save(balance);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedBalanced,"Successfully Deleted Balance");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedBalanced,
+                    "Successfully Deleted Balance");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
                 "No balance found");
