@@ -93,7 +93,8 @@ public class BalanceServiceImpl implements BalanceService {
             BalanceEntity savedBalanced=balanceRepository.save(balance);
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedBalanced,"Successfully Retrieved Balance");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No balance found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No balance found");
     }
 
     @Override
