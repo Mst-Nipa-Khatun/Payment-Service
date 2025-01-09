@@ -226,7 +226,8 @@ public class UserServiceImpl implements UserService {
     public Response getUsersDetails() {
         List<Map<String, Object>> details = balanceRepository.findByDetails();
         if (!details.isEmpty()){
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,details,"Successfully retrieved User");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,details,
+                    "Successfully retrieved User");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
                 "No Users Found");
