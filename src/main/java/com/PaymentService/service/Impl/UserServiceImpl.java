@@ -228,7 +228,8 @@ public class UserServiceImpl implements UserService {
         if (!details.isEmpty()){
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,details,"Successfully retrieved User");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,"No Users Found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT, null,
+                "No Users Found");
     }
 
     @Override
