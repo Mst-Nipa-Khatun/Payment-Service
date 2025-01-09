@@ -77,7 +77,8 @@ public class BalanceServiceImpl implements BalanceService {
             }
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,balanceDtos,"Successfully Retrieved Balance");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No balance found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No balance found");
     }
 
     @Override
