@@ -75,7 +75,8 @@ public class BalanceServiceImpl implements BalanceService {
                 BalanceDto bd=modelMapper.map(balance, BalanceDto.class);
                 balanceDtos.add(bd);
             }
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,balanceDtos,"Successfully Retrieved Balance");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,balanceDtos,
+                    "Successfully Retrieved Balance");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
                 "No balance found");
