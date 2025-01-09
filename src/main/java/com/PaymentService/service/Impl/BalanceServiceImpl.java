@@ -129,6 +129,7 @@ public class BalanceServiceImpl implements BalanceService {
                     "Successfully Updated Balance");
         }
 
-        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,"No balance found");
+        return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
+                "No balance found");
     }
 }
