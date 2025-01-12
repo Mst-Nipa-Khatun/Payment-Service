@@ -37,7 +37,8 @@ public class AccountServiceImpl implements AccountService {
 
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedAccount,"Created");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Account already exists");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "Account already exists");
     }
 
     @Override
