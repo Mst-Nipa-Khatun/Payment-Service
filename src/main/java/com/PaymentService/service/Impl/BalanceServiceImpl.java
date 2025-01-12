@@ -132,7 +132,8 @@ public class BalanceServiceImpl implements BalanceService {
             balance.setAccountId(balanceDto.getAccountId());
             balance.setUserId(balanceDto.getUserId());
             BalanceEntity savedBalanced=balanceRepository.save(balance);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedBalanced, "Successfully Updated Balance");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,savedBalanced,
+                    "Successfully Updated Balance");
         }
 
         return ResponseBuilder.getFailResponse(HttpStatus.NO_CONTENT,null,
