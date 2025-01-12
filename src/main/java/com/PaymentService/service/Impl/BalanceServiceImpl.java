@@ -31,7 +31,8 @@ public class BalanceServiceImpl implements BalanceService {
     public Response createBalance(BalanceDto balanceDto) {
         UsersEntity usersEntity = usersRepository.findByIdAndStatus(balanceDto.getUserId(), 1);
         if (usersEntity == null) {
-            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null, "User not found");
+            return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST, null,
+                    "User not found");
         }
 
         BalanceEntity balance = balanceRepository.findByUserIdAndStatus(balanceDto.getUserId(), 1);
