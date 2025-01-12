@@ -35,7 +35,8 @@ public class AccountServiceImpl implements AccountService {
             account.setAccType(accountDto.getAccType());
             AccountEntity savedAccount=accountRepository.save(account);
 
-            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedAccount,"Created");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedAccount,
+                    "Created");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
                 "Account already exists");
