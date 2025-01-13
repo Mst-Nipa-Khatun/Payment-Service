@@ -86,7 +86,8 @@ public class AccountServiceImpl implements AccountService {
             account.setRegion(account.getRegion());
             account.setAccType(account.getAccType());
             AccountEntity accountEntity=accountRepository.save(account);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,accountEntity,"Deleted Account");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,accountEntity,
+                    "Deleted Account");
 
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No account found");
