@@ -72,7 +72,8 @@ public class AccountServiceImpl implements AccountService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,accountEntity,
                     "Get Account");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No account found");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "No account found");
     }
 
     @Override
