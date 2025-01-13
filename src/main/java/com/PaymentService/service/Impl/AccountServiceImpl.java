@@ -90,7 +90,8 @@ public class AccountServiceImpl implements AccountService {
                     "Deleted Account");
 
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No account found");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "No account found");
     }
 
     @Override
