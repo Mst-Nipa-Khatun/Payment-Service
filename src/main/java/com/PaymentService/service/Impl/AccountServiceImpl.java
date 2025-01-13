@@ -69,7 +69,8 @@ public class AccountServiceImpl implements AccountService {
             AccountEntity accountEntity=accountRepository.save(account);
 
            // AccountDto accountDto=modelMapper.map(account,AccountDto.class);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,accountEntity,"Get Account");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,accountEntity,
+                    "Get Account");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No account found");
     }
