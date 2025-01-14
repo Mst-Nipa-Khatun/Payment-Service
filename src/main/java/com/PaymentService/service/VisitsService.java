@@ -6,4 +6,5 @@ import com.PaymentService.dto.VisitsDto;
 public interface VisitsService {
     Response createVisits(VisitsDto visitsDto);
     Response getVisitNoTransaction();
+    Response getVisitsNoTransactionJPA();
 }
