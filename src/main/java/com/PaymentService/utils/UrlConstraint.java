@@ -94,5 +94,9 @@ public final class UrlConstraint {
 //        public static final String EDIT_ACCOUNT_BY_ID ="/edit/{id}";
 
     }
+    public static class TransactionForVisits {
+        public static final String ROOT = "/transactionForVisits";
+        public static final String CREATE = "/create";
+    }
 
     }
