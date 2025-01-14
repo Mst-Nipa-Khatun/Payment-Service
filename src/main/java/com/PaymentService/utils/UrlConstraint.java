@@ -84,8 +84,14 @@ public final class UrlConstraint {
         public static final String DELETE_ACCOUNT_BY_ID ="/delete/{id}";
         public static final String EDIT_ACCOUNT_BY_ID ="/edit/{id}";
 
-
-
+    }
+    public static class Visits{
+        public static final String ROOT="/visits";
+        public static final String CREATE="/create";
+//        public static final String GET_ALL="/all";
+//        public static final String GET_ACCOUNT_BY_ID ="/get/{id}";
+//        public static final String DELETE_ACCOUNT_BY_ID ="/delete/{id}";
+//        public static final String EDIT_ACCOUNT_BY_ID ="/edit/{id}";
 
     }
 
