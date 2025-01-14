@@ -1,6 +1,7 @@
 package com.PaymentService.service.Impl;
 
 import com.PaymentService.dto.Response;
+import com.PaymentService.dto.VisitsDetailsProjection;
 import com.PaymentService.dto.VisitsDto;
 import com.PaymentService.entity.VisitsEntity;
 import com.PaymentService.repository.VisitsRepository;
@@ -8,6 +9,8 @@ import com.PaymentService.service.VisitsService;
 import com.PaymentService.utils.ResponseBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class VisitsServiceImpl implements VisitsService {
@@ -30,5 +33,14 @@ public class VisitsServiceImpl implements VisitsService {
 
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Already exists");
+    }
+
+    @Override
+    public Response getVisitNoTransaction() {
+        List<VisitsDetailsProjection> visits=visitsRepository.findByVisitsAndNoTransaction();
+        if(!visits.isEmpty()) {
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,visits,"successfully retrieved");
+        }
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transaction found");
     }
 }
