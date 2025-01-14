@@ -5,10 +5,7 @@ import com.PaymentService.dto.Response;
 import com.PaymentService.dto.VisitsDto;
 import com.PaymentService.service.VisitsService;
 import com.PaymentService.utils.UrlConstraint;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(UrlConstraint.Visits.ROOT)
@@ -21,5 +18,9 @@ public class VisitsController {
     @PostMapping(UrlConstraint.Visits.CREATE)
     public Response createVisits(@RequestBody VisitsDto visitsDto) {
         return visitsService.createVisits(visitsDto);
+    }
+    @GetMapping(UrlConstraint.Visits.GET_VISIT_NO_TRANSACTION)
+    public Response getVisitsNoTransaction() {
+        return visitsService.getVisitNoTransaction();
     }
 }
