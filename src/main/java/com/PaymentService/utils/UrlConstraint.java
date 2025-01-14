@@ -89,6 +89,8 @@ public final class UrlConstraint {
         public static final String ROOT="/visits";
         public static final String CREATE="/create";
         public static final String GET_VISIT_NO_TRANSACTION="/getVisitNoTransaction";
+        public static final String GET_VISIT_NO_TRANSACTION_JPA="/getVisitNoTransactionjpa";
+
 
 //        public static final String GET_ALL="/all";
 //        public static final String GET_ACCOUNT_BY_ID ="/get/{id}";

@@ -19,4 +19,6 @@ public interface VisitsRepository extends JpaRepository<VisitsEntity, Integer> {
             "GROUP BY customer_id", nativeQuery = true)
     List<VisitsDetailsProjection> findByVisitsAndNoTransaction();
 
+    List<VisitsEntity> findByCustomerId(Integer customerId);
+
 }

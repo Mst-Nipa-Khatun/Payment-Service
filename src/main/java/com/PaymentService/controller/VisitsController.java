@@ -23,4 +23,8 @@ public class VisitsController {
     public Response getVisitsNoTransaction() {
         return visitsService.getVisitNoTransaction();
     }
+    @GetMapping(UrlConstraint.Visits.GET_VISIT_NO_TRANSACTION_JPA)
+    public Response getVisitsNoTransactionJPA() {
+        return visitsService.getVisitsNoTransactionJPA();
+    }
 }
