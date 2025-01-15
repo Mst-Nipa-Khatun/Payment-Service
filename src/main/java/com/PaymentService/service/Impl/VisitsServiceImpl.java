@@ -47,7 +47,8 @@ public class VisitsServiceImpl implements VisitsService {
             return ResponseBuilder.getSuccessResponse(HttpStatus.OK,visits,
                     "successfully retrieved");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transaction found");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "No transaction found");
     }
 
     @Override
