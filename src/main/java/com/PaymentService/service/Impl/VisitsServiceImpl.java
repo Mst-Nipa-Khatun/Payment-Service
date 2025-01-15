@@ -33,7 +33,8 @@ public class VisitsServiceImpl implements VisitsService {
             visits.setVisitId(visitsDto.getVisitId());
             visits.setCustomerId(visitsDto.getCustomerId());
            VisitsEntity savedVisits= visitsRepository.save(visits);
-           return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedVisits,"successfully created");
+           return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedVisits,
+                   "successfully created");
 
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Already exists");
