@@ -44,7 +44,8 @@ public class VisitsServiceImpl implements VisitsService {
     public Response getVisitNoTransaction() {
         List<VisitsDetailsProjection> visits=visitsRepository.findByVisitsAndNoTransaction();
         if(!visits.isEmpty()) {
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,visits,"successfully retrieved");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,visits,
+                    "successfully retrieved");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"No transaction found");
     }
