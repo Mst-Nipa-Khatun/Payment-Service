@@ -72,7 +72,8 @@ public class VisitsServiceImpl implements VisitsService {
         //List<TransactionsForVisitsEntity> transactions1=transactionForVisitRepository.findAllBy();
         if(!transactions.isEmpty()) {
 
-            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,transactions,"successfully retrieved");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.OK,transactions,
+                    "successfully retrieved");
         }
         //List<VisitsEntity> visitsEntities=visitsRepository.findByCustomerId();
         return null;
