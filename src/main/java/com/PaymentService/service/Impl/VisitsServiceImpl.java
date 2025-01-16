@@ -68,7 +68,6 @@ public class VisitsServiceImpl implements VisitsService {
 
         * ki ki korte hobe line by line 1,2,3 diye agge ikho then code start koro.... :) :):( bye
         *  */
-        //TransactionsForVisitsEntity transactions=transactionForVisitRepository.findByTransactionId()
         //List<TransactionsForVisitsEntity> transactions1=transactionForVisitRepository.findAllBy();
         if(!transactions.isEmpty()) {
 
