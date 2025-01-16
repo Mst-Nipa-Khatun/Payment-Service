@@ -37,7 +37,8 @@ public class VisitsServiceImpl implements VisitsService {
                    "successfully created");
 
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Already exists");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "Already exists");
     }
 
     @Override
