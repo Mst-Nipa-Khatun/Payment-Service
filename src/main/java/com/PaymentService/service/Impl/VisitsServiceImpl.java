@@ -65,7 +65,6 @@ public class VisitsServiceImpl implements VisitsService {
         * 4-visit id count er jonno kaj korbo
         * 5-save korbo repo te.
         *
-
         *  */
         if(!transactions.isEmpty()) {
 
