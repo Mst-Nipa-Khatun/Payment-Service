@@ -66,7 +66,6 @@ public class VisitsServiceImpl implements VisitsService {
         * 5-save korbo repo te.
         *
 
-        * ki ki korte hobe line by line 1,2,3 diye agge ikho then code start koro.... :) :):( bye
         *  */
         if(!transactions.isEmpty()) {
 
