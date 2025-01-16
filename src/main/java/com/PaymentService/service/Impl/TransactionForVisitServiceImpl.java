@@ -26,7 +26,8 @@ public class TransactionForVisitServiceImpl implements TransactionForVisitServic
             transactions.setVisitId(transactionForVisitDto.getVisitId());
             transactions.setAmount(transactionForVisitDto.getAmount());
             TransactionsForVisitsEntity savedTransactions=transactionForVisitRepository.save(transactions);
-            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedTransactions,"Successfully created transaction");
+            return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedTransactions,
+                    "Successfully created transaction");
         }
         return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
                 "Transaction already exists");
