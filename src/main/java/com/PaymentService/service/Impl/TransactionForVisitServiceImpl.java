@@ -28,6 +28,7 @@ public class TransactionForVisitServiceImpl implements TransactionForVisitServic
             TransactionsForVisitsEntity savedTransactions=transactionForVisitRepository.save(transactions);
             return ResponseBuilder.getSuccessResponse(HttpStatus.CREATED,savedTransactions,"Successfully created transaction");
         }
-        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,"Transaction already exists");
+        return ResponseBuilder.getFailResponse(HttpStatus.BAD_REQUEST,null,
+                "Transaction already exists");
     }
 }
