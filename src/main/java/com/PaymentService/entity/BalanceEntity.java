@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "BALANCE")
+@Table(name = "Balance")
 public class BalanceEntity extends BaseEntity{
     @Column(name = "balance")
     private Double balance;
