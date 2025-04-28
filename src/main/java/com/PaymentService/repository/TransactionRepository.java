@@ -26,7 +26,8 @@ public interface TransactionRepository extends JpaRepository<TransactionEntity, 
                                             @Param("endAmount") Double endAmount);
 
 
-    @Query(value = "select  u from TransactionEntity u where trim(lower(u.transactionType))=lower(:transaction_type) AND u.amount BETWEEN :startAmount" +
+    @Query(value = "select  u from TransactionEntity u where" +
+            " trim(lower(u.transactionType))=lower(:transaction_type) AND u.amount BETWEEN :startAmount" +
             " AND :endAmount")
     List<TransactionEntity> getSpecificDataWithoutNativeQuery(@Param("transaction_type") String transaction_type,
                                                               @Param("startAmount") Double startAmount,
