@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@Table(name = "role")
+@Table(name = "Role")
 @Entity
 public class RoleEntity extends BaseEntity {
     private String name;
