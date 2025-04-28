@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "company")
+@Table(name = "Company")
 public class CompanyEntity extends BaseEntity {
     private String companyName;
     private String companyAddress;
