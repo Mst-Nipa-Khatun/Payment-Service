@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import lombok.Data;
 
 @Data
-@Entity(name = "privilege")
+@Entity(name = "Privilege")
 public class PrivilegeEntity extends BaseEntity {
     private String privilege;
 }
