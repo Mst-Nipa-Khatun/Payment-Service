@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="payment_service")
+@Table(name="Students")
 public class StudentEntity extends BaseEntity{
     private String name;
     private String gender;
